@@ -26,11 +26,11 @@ const getActiveWords = () => (dispatch) => {
   if (completed.length) {
     possibles = filterArrays(words,completed);
     possibles.sort(() => 0.5 - Math.random());
-    activeWord = possibles;
+    activeWord = possibles.splice(0,3);
   } else {
     possibles = [...words]
     possibles.sort(() => 0.5 - Math.random());
-    activeWord = possibles;
+    activeWord = possibles.splice(0,3);
   }
 
   dispatch({
