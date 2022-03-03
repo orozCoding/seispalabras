@@ -6,6 +6,7 @@ import { getActiveWords } from "./redux/actives/activesReducer";
 import './App.css';
 import Home from './components/home/homePage';
 import Completed from "./components/completed/completed";
+import NavBar from "./components/header/navBar";
 
 const App = () => {
   const completed = useSelector((state) => state.completed);
@@ -28,8 +29,11 @@ const App = () => {
   return (
     <div className="App">
       <Router>
+        <header className="header">
+          <NavBar />
+        </header>
         <Routes>
-          <Route path='/' element={<Home  actives={actives} />} />
+          <Route path='/' element={<Home actives={actives} />} />
           <Route path='/Completed' element={<Completed completed={completed} />} />
         </Routes>
       </Router>
