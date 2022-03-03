@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getCompleted } from "./redux/completed/completedReducer";
 import { getActiveWords } from "./redux/actives/activesReducer";
 import './App.css';
 import Home from './components/home/homePage';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Completed from "./components/completed/completed";
 
 const App = () => {
   const completed = useSelector((state) => state.completed);
@@ -28,7 +29,8 @@ const App = () => {
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/' element={<Home completed={completed} actives={actives} />} />
+          <Route path='/' element={<Home  actives={actives} />} />
+          <Route path='/Completed' element={<Completed completed={completed} />} />
         </Routes>
       </Router>
     </div>

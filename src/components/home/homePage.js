@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { addCompleted } from "../../redux/completed/completedReducer";
-import { getActiveWords, checkAnswer } from "../../redux/actives/activesReducer";
+import { checkAnswer } from "../../redux/actives/activesReducer";
 
 const Home = (props) => {
   const { actives } = props;
