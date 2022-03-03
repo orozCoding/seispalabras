@@ -37,7 +37,7 @@ const reducer = (state = [], action) => {
   switch (action.type) {
     case GET_ACTIVES:
       return action.playload;
-    case UPDATE_ACTIVES:
+    case COMPLETE_ACTIVE:
       return action.playload;
     default:
       return state;
