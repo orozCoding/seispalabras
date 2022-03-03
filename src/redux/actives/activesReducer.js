@@ -24,13 +24,13 @@ const getActiveWords = () => (dispatch) => {
   let activeWord = [];
   let completed = JSON.parse(localStorage.getItem('completed'));
   if (completed.length) {
-    possibles = filterArrays(words,completed);
+    possibles = filterArrays(words, completed);
     possibles.sort(() => 0.5 - Math.random());
-    activeWord = possibles.splice(0,3);
+    activeWord = possibles.splice(0, 3);
   } else {
     possibles = [...words]
     possibles.sort(() => 0.5 - Math.random());
-    activeWord = possibles.splice(0,3);
+    activeWord = possibles.splice(0, 3);
   }
 
   dispatch({
@@ -42,7 +42,7 @@ const getActiveWords = () => (dispatch) => {
 const completeActiveWord = (active, actives) => (dispatch) => {
   const newActives = [...actives];
   newActives.map((word) => {
-    if(word.id === active.id)
+    if (word.id === active.id)
       word.completed = true;
   })
 

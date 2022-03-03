@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCompleted } from "./redux/completed/completedReducer";
-import { getActiveWords, checkAnswer } from "./redux/actives/activesReducer";
+import { getActiveWords } from "./redux/actives/activesReducer";
 import './App.css';
 import Home from './components/home/homePage';
 
