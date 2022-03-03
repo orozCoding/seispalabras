@@ -10,8 +10,16 @@ const Home = (props) => {
   function handleClick(active) {
     const input = document.getElementById(`input-${active.id}`);
     const answer = input.value;
+
+    let correctAnswers = [];
+    active.s.forEach((word) => {
+      word = word.normalize("NFD").replace(/\p{Diacritic}/gu, "")
+      word = word.toLowerCase();
+      correctAnswers.push(word);
+    })
+
     dispatch(checkAnswer(answer, active, actives));
-    if (active.s.includes(answer.toLowerCase())) {
+    if (correctAnswers.includes(answer.toLowerCase())) {
       dispatch(addCompleted(active));
     }
   }

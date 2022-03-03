@@ -53,10 +53,17 @@ const completeActiveWord = (active, actives) => (dispatch) => {
 }
 
 const checkAnswer = (answer, active, actives) => (dispatch) => {
-  const filter = answer.toLowerCase();
+  answer = answer.toLowerCase();
   const resultDiv = document.querySelector('.resultDiv');
-  if (active.s.includes(filter)) {
+  let correctAnswers = [];
+  active.s.forEach((word) => {
+    word = word.normalize("NFD").replace(/\p{Diacritic}/gu, "")
+    word = word.toLowerCase();
+    correctAnswers.push(word);
+  })
+  if (correctAnswers.includes(answer)) {
     resultDiv.innerHTML = 'correct';
+    console.log(active);
     dispatch(completeActiveWord(active, actives));
     return true;
   } else {

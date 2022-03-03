@@ -1,7 +1,7 @@
 const words = [{
   id: 1,
   e: 'car',
-  s: ['auto', 'carro', 'coche'],
+  s: ['Auto', 'carro', 'coche'],
   completed: 'false',
   active: 'false',
 },
