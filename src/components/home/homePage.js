@@ -7,20 +7,37 @@ const Home = (props) => {
   const { actives } = props;
   const dispatch = useDispatch();
 
-  const handleClick = (answer, actives) => {
-    dispatch(checkAnswer(answer, actives));
-    if(actives[0].s.includes(answer.toLowerCase())){
-      dispatch(addCompleted(actives));
+  function handleClick(active) {
+    const input = document.getElementById(`input-${active.id}`);
+    const answer = input.value;
+    dispatch(checkAnswer(answer, active, actives));
+    if (active.s.includes(answer.toLowerCase())) {
+      dispatch(addCompleted(active));
     }
   }
 
   return (
     <div>
-      Tres Palabras Diarias
-      (Three daily words)
-      <div>¿Cómo se dice <span>{`"${actives.map((active) => `${active.e}`)}"`}</span> en español?</div>
+      Tres Palabras Diarias (Three daily words)
+      <div>¿Cómo se dicen en español las siguientes palabras?</div>
+      <div>{actives.map((active) => {
+        return (
+          <form
+            id={`form-${active.id}`}
+            key={active.id}
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleClick(active)
+            }}>
+            <div>{active.e}</div>
+            <input id={`input-${active.id}`} name="answer" type="text"></input>
+            <button type="submit">submit</button>
+          </form>
+        )
+      })}
+      </div>
       <button type="button" name="answer"
-      onClick={() => handleClick('ordenador', actives)}>ordenador</button>
+        onClick={(e) => handleClick('ordenador', actives, e)}>ordenador</button>
       <div className="resultDiv"></div>
     </div>
   )

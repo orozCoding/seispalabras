@@ -24,19 +24,13 @@ const getActiveWords = () => (dispatch) => {
   let activeWord = [];
   let completed = JSON.parse(localStorage.getItem('completed'));
   if (completed.length) {
-    console.log('aca toy');
     possibles = filterArrays(words,completed);
-    console.log('estos son los possibles ahora');
-    console.log(possibles);
     possibles.sort(() => 0.5 - Math.random());
-
-    activeWord = [possibles[0]];
-
+    activeWord = possibles;
   } else {
-    console.log('me fui por else');
     possibles = [...words]
     possibles.sort(() => 0.5 - Math.random());
-    activeWord = [possibles[0]];
+    activeWord = possibles;
   }
 
   dispatch({
@@ -45,23 +39,25 @@ const getActiveWords = () => (dispatch) => {
   });
 };
 
-const completeActiveWord = (active) => (dispatch) => {
-  console.log('si llegué');
-  const newActive = [...active];
-  newActive.completed = true;
+const completeActiveWord = (active, actives) => (dispatch) => {
+  const newActives = [...actives];
+  newActives.map((word) => {
+    if(word.id === active.id)
+      word.completed = true;
+  })
 
   dispatch({
     type: COMPLETE_ACTIVE,
-    playload: newActive,
+    playload: newActives,
   })
 }
 
-const checkAnswer = (answer, active) => (dispatch) => {
+const checkAnswer = (answer, active, actives) => (dispatch) => {
   const filter = answer.toLowerCase();
   const resultDiv = document.querySelector('.resultDiv');
-  if (active.some(active => active.s.includes(filter))) {
+  if (active.s.includes(filter)) {
     resultDiv.innerHTML = 'correct';
-    dispatch(completeActiveWord(active));
+    dispatch(completeActiveWord(active, actives));
     return true;
   } else {
     resultDiv.innerHTML = 'not at all';
