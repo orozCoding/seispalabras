@@ -4,17 +4,26 @@ const GET_ACTIVES = 'redux/actives/GET_ACTIVES';
 const COMPLETE_ACTIVE = 'redux/actives/UPDATE_ACTIVES';
 
 const getActiveWords = (completed) => (dispatch) => {
-  const possibles = words.filter(word => !completed.includes(word));
-  possibles.sort(() => 0.5 - Math.random());
-  const activeWord = possibles[0];
+  let possibles = [];
+  let activeWord = [];
+  if (completed.length) {
+    possibles = words.filter(word => !completed.includes(word));
+    possibles.sort(() => 0.5 - Math.random());
+    activeWord = possibles[0];
+  } else {
+    possibles = [...words]
+    possibles.sort(() => 0.5 - Math.random());
+    activeWord = [possibles[0]];
+  }
 
   dispatch({
     type: GET_ACTIVES,
-    playload: activeWord
-  })
-}
+    playload: activeWord,
+  });
+};
 
 const completeActiveWord = (active) => (dispatch) => {
+  console.log('si llegué');
   const newActive = [...active];
   newActive.completed = true;
 
@@ -24,12 +33,14 @@ const completeActiveWord = (active) => (dispatch) => {
   })
 }
 
-const checkAnswer = (answer, active) => {
+const checkAnswer = (answer, active) => (dispatch) => {
   const filter = answer.toLowerCase();
-  if (active.some(active => active.s.includes(filter))){
-    completeActiveWord(active);
+  const resultDiv = document.querySelector('.resultDiv');
+  if (active.some(active => active.s.includes(filter))) {
+    resultDiv.innerHTML = 'correct';
+    dispatch(completeActiveWord(active));
   } else {
-    console.log('Nope')
+    resultDiv.innerHTML = 'not at all';
   }
 };
 
@@ -45,4 +56,4 @@ const reducer = (state = [], action) => {
 }
 
 export default reducer;
-export { getActiveWords };
+export { getActiveWords, checkAnswer };

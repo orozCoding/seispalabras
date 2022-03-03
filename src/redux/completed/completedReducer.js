@@ -6,6 +6,8 @@ const getCompleted = () => (dispatch) => {
 
   if (localStorage.getItem('completed')) {
     completed = JSON.parse(localStorage.getItem('completed'));
+  } else {
+    localStorage.setItem('completed', JSON.stringify(completed));
   }
 
   dispatch({
@@ -13,7 +15,6 @@ const getCompleted = () => (dispatch) => {
     playload: completed,
   })
 };
-
 
 const addCompleted = (active) => (dispatch) => {
   const completed = JSON.parse(localStorage.getItem('completed'));
