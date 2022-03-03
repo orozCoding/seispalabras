@@ -4,6 +4,7 @@ import { getCompleted } from "./redux/completed/completedReducer";
 import { getActiveWords } from "./redux/actives/activesReducer";
 import './App.css';
 import Home from './components/home/homePage';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const completed = useSelector((state) => state.completed);
@@ -25,7 +26,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <Home completed={completed} actives={actives} />
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home completed={completed} actives={actives} />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
