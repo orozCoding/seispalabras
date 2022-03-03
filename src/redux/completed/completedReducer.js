@@ -18,7 +18,7 @@ const getCompleted = () => (dispatch) => {
 
 const addCompleted = (active) => (dispatch) => {
   const completed = JSON.parse(localStorage.getItem('completed'));
-  completed.push(active);
+  completed.push(active[0]);
   localStorage.setItem('completed', JSON.stringify(completed));
 
   dispatch({

@@ -39,8 +39,10 @@ const checkAnswer = (answer, active) => (dispatch) => {
   if (active.some(active => active.s.includes(filter))) {
     resultDiv.innerHTML = 'correct';
     dispatch(completeActiveWord(active));
+    return true;
   } else {
     resultDiv.innerHTML = 'not at all';
+    return false;
   }
 };
 

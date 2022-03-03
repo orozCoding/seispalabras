@@ -1,19 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCompleted } from "../../redux/completed/completedReducer";
+import { addCompleted } from "../../redux/completed/completedReducer";
 import { getActiveWords, checkAnswer } from "../../redux/actives/activesReducer";
 
 const Home = (props) => {
-  const { completed, actives } = props;
+  const { actives } = props;
   const dispatch = useDispatch();
 
-  const handleClick = (answer, active) => {
-    dispatch(checkAnswer(answer, active));
+  const handleClick = (answer, actives) => {
+    dispatch(checkAnswer(answer, actives));
+    if(actives[0].s.includes(answer.toLowerCase())){
+      dispatch(addCompleted(actives));
+    }
   }
 
   return (
     <div>
-      Hello from home.
+      Tres Palabras Diarias
+      (Three daily words)
       <div>¿Cómo se dice <span>{`"${actives.map((active) => `${active.e}`)}"`}</span> en español?</div>
       <button type="button" name="answer"
       onClick={() => handleClick('Carro', actives)}>Carro</button>
