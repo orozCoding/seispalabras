@@ -20,7 +20,7 @@ const Home = (props) => {
       (Three daily words)
       <div>¿Cómo se dice <span>{`"${actives.map((active) => `${active.e}`)}"`}</span> en español?</div>
       <button type="button" name="answer"
-      onClick={() => handleClick('Carro', actives)}>Carro</button>
+      onClick={() => handleClick('ordenador', actives)}>ordenador</button>
       <div className="resultDiv"></div>
     </div>
   )

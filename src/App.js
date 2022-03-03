@@ -19,7 +19,7 @@ const App = () => {
 
   useEffect(() => {
     if (!actives.length) {
-      dispatch(getActiveWords(completed));
+      dispatch(getActiveWords());
     }
   }, []);
 
