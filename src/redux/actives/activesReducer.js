@@ -1,5 +1,5 @@
 import words from "../../components/words/allWords";
-import { checkSameDay, storageNewDay } from "../../components/dates/dates";
+import { checkSameDay, storageNewDay, checkNewDay } from "../../components/dates/dates";
 
 const GET_ACTIVES = 'redux/actives/GET_ACTIVES';
 const COMPLETE_ACTIVE = 'redux/actives/UPDATE_ACTIVES';
@@ -13,17 +13,12 @@ const filterArrays = (arr1, arr2) => {
       if (arr1[i].id === arr2[x].id) {
         arr.splice(arr.indexOf(arr1[i]), 1);
       }
-
     }
-
   }
   return arr;
 }
 
 const loadActiveWords = () => {
-  if (localStorage.getItem('activeWords') === 'undefined'){
-    return false;
-  }
   return JSON.parse(localStorage.getItem('activeWords'));
 }
 
@@ -49,7 +44,9 @@ const createActiveWords = () => {
 }
 
 const checkActiveWords = () => {
-  if(loadActiveWords() && checkSameDay()){
+  if (loadActiveWords() && checkSameDay()) {
+    return loadActiveWords();
+  } else if (loadActiveWords() && !checkNewDay()) {
     return loadActiveWords();
   }
   return createActiveWords();
@@ -57,7 +54,6 @@ const checkActiveWords = () => {
 
 const getActiveWords = () => (dispatch) => {
   const active = checkActiveWords();
-
   storageActiveWords(active);
   storageNewDay();
 
@@ -84,6 +80,7 @@ const completeActiveWord = (active, actives) => (dispatch) => {
 
 const checkAnswer = (answer, active, actives) => (dispatch) => {
   answer = answer.toLowerCase();
+  answer = answer.normalize("NFD").replace(/\p{Diacritic}/gu, "")
   const resultDiv = document.querySelector('.resultDiv');
   let correctAnswers = [];
   active.s.forEach((word) => {

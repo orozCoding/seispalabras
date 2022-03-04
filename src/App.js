@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getCompleted } from "./redux/completed/completedReducer";
 import { getActiveWords } from "./redux/actives/activesReducer";
 import './App.css';
-import Home from './components/home/homePage';
-import Completed from "./components/completed/completed";
+import Home from './pages/homePage';
+import Completed from "./pages/completed";
 import NavBar from "./components/header/navBar";
 
 const App = () => {
