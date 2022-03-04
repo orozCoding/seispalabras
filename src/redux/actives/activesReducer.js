@@ -1,4 +1,5 @@
 import words from "../../components/words/allWords";
+import { checkSameDay, storageNewDay } from "../../components/dates/dates";
 
 const GET_ACTIVES = 'redux/actives/GET_ACTIVES';
 const COMPLETE_ACTIVE = 'redux/actives/UPDATE_ACTIVES';
@@ -19,23 +20,50 @@ const filterArrays = (arr1, arr2) => {
   return arr;
 }
 
-const getActiveWords = () => (dispatch) => {
+const loadActiveWords = () => {
+  if (localStorage.getItem('activeWords') === 'undefined'){
+    return false;
+  }
+  return JSON.parse(localStorage.getItem('activeWords'));
+}
+
+const storageActiveWords = (words) => {
+  localStorage.setItem('activeWords', JSON.stringify(words))
+}
+
+const createActiveWords = () => {
   let possibles = [];
-  let activeWord = [];
+  let activeWords = [];
   let completed = JSON.parse(localStorage.getItem('completed'));
   if (completed.length) {
     possibles = filterArrays(words, completed);
     possibles.sort(() => 0.5 - Math.random());
-    activeWord = possibles.splice(0, 3);
+    activeWords = possibles.splice(0, 3);
+    return activeWords;
   } else {
     possibles = [...words]
     possibles.sort(() => 0.5 - Math.random());
-    activeWord = possibles.splice(0, 3);
+    activeWords = possibles.splice(0, 3);
+    return activeWords;
   }
+}
+
+const checkActiveWords = () => {
+  if(loadActiveWords() && checkSameDay()){
+    return loadActiveWords();
+  }
+  return createActiveWords();
+}
+
+const getActiveWords = () => (dispatch) => {
+  const active = checkActiveWords();
+
+  storageActiveWords(active);
+  storageNewDay();
 
   dispatch({
     type: GET_ACTIVES,
-    playload: activeWord,
+    playload: active,
   });
 };
 
@@ -45,6 +73,8 @@ const completeActiveWord = (active, actives) => (dispatch) => {
     if (word.id === active.id)
       word.completed = true;
   })
+
+  storageActiveWords(newActives);
 
   dispatch({
     type: COMPLETE_ACTIVE,
