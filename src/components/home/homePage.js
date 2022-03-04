@@ -44,8 +44,6 @@ const Home = (props) => {
         )
       })}
       </div>
-      <button type="button" name="answer"
-        onClick={(e) => handleClick('ordenador', actives, e)}>ordenador</button>
       <div className="resultDiv"></div>
     </div>
   )
