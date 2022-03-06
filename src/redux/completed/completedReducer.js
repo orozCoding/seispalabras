@@ -29,7 +29,7 @@ const addCompleted = (active) => (dispatch) => {
   })
 };
 
-const checkAnswerCompleted = (answer, active, actives) => (dispatch) => {
+const checkAnswerCompleted = (answer, active) => (dispatch) => {
   answer = filterGuess(answer);
   let correctAnswers = filterCorrectAnswers(answer, active);
   if (correctAnswers.includes(answer)) {
@@ -38,7 +38,7 @@ const checkAnswerCompleted = (answer, active, actives) => (dispatch) => {
   } else {
     return false;
   }
-}
+};
 
 const reducer = (state = [], action) => {
   switch (action.type) {

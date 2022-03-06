@@ -12,7 +12,7 @@ const ActiveWords = (props) => {
     const answer = input.value;
 
     dispatch(checkAnswer(answer, active, actives));
-    dispatch(checkAnswerCompleted(answer, active, actives));
+    dispatch(checkAnswerCompleted(answer, active));
 
   }
 
