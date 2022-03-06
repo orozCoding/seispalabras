@@ -15,11 +15,15 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
- 
+    if (!completed.length) {
+      dispatch(getCompleted());
+    }
   }, []);
 
   useEffect(() => {
-
+    if (!actives.length) {
+      dispatch(getActiveWords());
+    }
   }, []);
 
   return (
