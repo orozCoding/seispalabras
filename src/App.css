@@ -129,3 +129,18 @@ form button {
 .correctText {
   color: rgb(13, 175, 35);
 }
+
+/* Completed */ 
+
+.completed-container {
+  margin-top: 15px;
+  gap: 20px;
+}
+
+.completedWords {
+  gap: 15px;
+}
+
+.completedWord {
+  color: #f1a71c;
+}
