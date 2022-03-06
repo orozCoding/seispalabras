@@ -1,6 +1,6 @@
 import React from "react";
 import { checkAnswer } from "../../redux/actives/activesReducer";
-import { addCompleted } from "../../redux/completed/completedReducer";
+import { checkAnswerCompleted } from "../../redux/completed/completedReducer";
 import { useDispatch } from "react-redux";
 
 const ActiveWords = (props) => {
@@ -11,17 +11,9 @@ const ActiveWords = (props) => {
     const input = document.getElementById(`input-${active.id}`);
     const answer = input.value;
 
-    let correctAnswers = [];
-    active.s.forEach((word) => {
-      word = word.normalize("NFD").replace(/\p{Diacritic}/gu, "")
-      word = word.toLowerCase();
-      correctAnswers.push(word);
-    })
-
     dispatch(checkAnswer(answer, active, actives));
-    if (correctAnswers.includes(answer.toLowerCase())) {
-      dispatch(addCompleted(active));
-    }
+    dispatch(checkAnswerCompleted(answer, active, actives));
+
   }
 
   return (

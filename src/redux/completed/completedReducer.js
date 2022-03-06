@@ -1,3 +1,5 @@
+import { checkForAccentMark, filterGuess, filterCorrectAnswers } from "../../components/words/wordFilters";
+
 const GET_COMPLETED = 'redux/completed/GET_COMPLETED';
 const ADD_COMPLETED = 'redux/completed/ADD_COMPLETED';
 
@@ -27,6 +29,17 @@ const addCompleted = (active) => (dispatch) => {
   })
 };
 
+const checkAnswerCompleted = (answer, active, actives) => (dispatch) => {
+  answer = filterGuess(answer);
+  let correctAnswers = filterCorrectAnswers(answer, active);
+  if (correctAnswers.includes(answer)) {
+    dispatch(addCompleted(active));
+    return true;
+  } else {
+    return false;
+  }
+}
+
 const reducer = (state = [], action) => {
   switch (action.type) {
     case GET_COMPLETED:
@@ -39,4 +52,4 @@ const reducer = (state = [], action) => {
 };
 
 export default reducer;
-export { getCompleted, addCompleted };
+export { getCompleted, checkAnswerCompleted };
