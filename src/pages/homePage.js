@@ -13,28 +13,40 @@ const Home = (props) => {
     return true;
   }
 
+  const countUncompleted = (actives) => {
+    let n = 0;
+    actives.forEach((active) => {
+      if (!active.completed) {
+        n = n + 1;
+      }
+    })
+    return n;
+  }
+
   const renderProgress = () => {
     if (checkFinished()) {
       return (
         <div>
-          <p>You finished!</p>
-          <p>You finished!</p>
-          </div>
+          <p>Congratulations!</p>
+          <p>You finished today.</p>
+          <p>New words tomorrow!</p>
+          <p>In: </p>
+        </div>
       )
     }
-    return <div> Finish the words! </div>
+    return <div> { `${countUncompleted(actives)} more to go...` } </div>
   }
 
   return (
-    <div>
-      <p>Tres Palabras Diarias (Three daily words)</p>
-      <div>Traduce al español las siguientes palabras:</div>
+    <section id="home-container" className="d-flex col">
+      <p className="title bold">Tres Palabras Diarias</p>
+      <div>Type a Spanish word for:</div>
       <ActiveWords actives={actives} />
       <div>
-        {renderProgress()}
+        {renderProgress(actives)}
       </div>
       <div className="resultDiv"></div>
-    </div>
+    </section>
   )
 };
 

@@ -25,19 +25,23 @@ const ActiveWords = (props) => {
   }
 
   return (
-    <div>{actives.map((active) => {
+    <div className="form-container d-flex col">{actives.map((active) => {
       return (
         <form
           id={`form-${active.id}`}
+          className="d-flex col"
           key={active.id}
           onSubmit={(e) => {
             e.preventDefault();
             handleClick(active)
           }}>
-          <div>{active.e}</div>
-          {!active.completed && (<div><input id={`input-${active.id}`} name="answer" type="text"></input>
-            <button type="submit">submit</button></div>)}
-          {active.completed && (<div>Completed!</div>)}
+          <div className="wordTitle rub bold">{active.e.toUpperCase()}</div>
+          {!active.completed && (
+            <div className="d-flex col form-input-container">
+              <input id={`input-${active.id}`} name="answer" type="text" placeholder="... in Spanish"></input>
+              <button type="submit" className="click">SEND</button>
+            </div>)}
+          {active.completed && (<div className="correctText bold">Correct!</div>)}
         </form>
       )
     })}

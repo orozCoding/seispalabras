@@ -5,12 +5,12 @@ const NavBar = () => {
 
   return (
     <nav id="navBar" className="navBar">
-      <ul id="pagesList" className="d-flex">
+      <ul id="pagesList" className="d-flex bold">
         <li key={'Home'}>
-          <NavLink to="/" className={({isActive}) => isActive ? 'activeLink' : undefined}>HOME</NavLink>
+          <NavLink to="/" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>HOME</NavLink>
         </li>
         <li key={'Completed'}>
-          <NavLink to="/Completed" className={({isActive}) => isActive ? 'activeLink' : undefined}>COMPLETED</NavLink>
+          <NavLink to="/Completed" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>COMPLETED</NavLink>
         </li>
       </ul>
     </nav>

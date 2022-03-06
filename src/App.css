@@ -1,39 +1,131 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+/* Global vars */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
   text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #383185;
+  font-size: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  overflow: scroll;
+  color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+ul {
+  list-style: none;
 }
 
-.App-header {
-  min-height: 100vh;
+a,
+a:hover,
+a:visited,
+a:active {
+  text-decoration: inherit;
+}
+
+.d-flex {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.col {
+  flex-direction: column;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.rub {
+  font-family: 'Rubik', sans-serif;
+}
+
+.click {
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* Header */
+
+.activeLink {
+  color: #236cbb;
+}
+
+.activeLink:hover,
+.activeLink:visited,
+.activeLink:active {
+  color: #ffffff;
+}
+
+.pageLink {
+  color: #b1b1b1;
+}
+
+#pagesList {
+  gap: 30px;
+  padding: 10px 0;
+}
+
+/* Home */ 
+
+.title {
+  font-size: 30px;
+  color: #f1a71c;
+}
+
+#home-container {
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.form-container {
+  gap: 30px;
+}
+
+form {
+  gap: 5px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.65);
+  color: #000;
+  width: 230px;
+  height: 150px;
+}
+
+.wordTitle {
+  font-size: 23px;
+  color: #000;
+}
+
+.form-input-container {
+  gap: 6px;
+}
+
+form input {
+  padding: 3px 0;
+  text-align: center;
+  border: solid 1px #f1a71c;
+  outline: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+form button {
+  padding: 5px 10px;
+  background-color: #fff;
+  border: solid 1px #f1a71c;
+}
+
+.correctText {
+  color: rgb(13, 175, 35);
 }
