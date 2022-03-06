@@ -1,4 +1,4 @@
-import { checkForAccentMark, filterGuess, filterCorrectAnswers } from "../../components/words/wordFilters";
+import { filterGuess, filterCorrectAnswers } from "../../components/words/wordFilters";
 
 const GET_COMPLETED = 'redux/completed/GET_COMPLETED';
 const ADD_COMPLETED = 'redux/completed/ADD_COMPLETED';

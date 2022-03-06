@@ -69,6 +69,7 @@ const completeActiveWord = (active, actives) => (dispatch) => {
   newActives.map((word) => {
     if (word.id === active.id)
       word.completed = true;
+      return true;
   })
 
   storageActiveWords(newActives);
