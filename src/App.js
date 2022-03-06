@@ -27,7 +27,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="appBody d-flex col">
       <Router>
         <header className="header">
           <NavBar />

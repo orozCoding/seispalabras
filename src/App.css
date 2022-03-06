@@ -135,6 +135,8 @@ form button {
 .completed-container {
   margin-top: 15px;
   gap: 20px;
+  width: 80%;
+  align-items: center;
 }
 
 .completedWords {
