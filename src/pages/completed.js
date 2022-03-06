@@ -15,7 +15,7 @@ const Completed = (props) => {
           </div>
         )
       })}
-      <p>Comeback tomorrow and play with more words.</p></div>
+      <p className="finalMsg">Comeback tomorrow and play with more words.</p></div>
     </section>
   )
 }

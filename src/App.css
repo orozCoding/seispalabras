@@ -146,3 +146,8 @@ form button {
 .completedWord {
   color: #f1a71c;
 }
+
+.finalMsg {
+  margin-top: 10px;
+  color: #f1a71c;
+}

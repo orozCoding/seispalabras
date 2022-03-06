@@ -14,7 +14,7 @@ const words = [{
 },
 {
   id: 3,
-  e: 'computer',  
+  e: 'computer',
   s: ['computadora', 'computador', 'ordenador'],
   completed: false,
   active: false,
@@ -22,7 +22,7 @@ const words = [{
 {
   id: 4,
   e: 'shoe',
-  s: ['zapato', 'calzado', 'zapatilla', 'botín', 'bota'],
+  s: ['zapato', 'calzado', 'zapatos', 'zapatilla', 'botín', 'bota'],
   completed: false,
   active: false,
 },
@@ -32,6 +32,84 @@ const words = [{
   s: ['amigo', 'amiga'],
   completed: false,
   active: false,
-}];
+},
+{
+  id: 6,
+  e: 'carpet',
+  s: ['alfombra', 'moqueta', 'tapiz', 'tapete'],
+  completed: false,
+  active: false,
+},
+{
+  id: 7,
+  e: 'hair comb',
+  s: ['peine'],
+  completed: false,
+  active: false,
+},
+{
+  id: 8,
+  e: 'chair',
+  s: ['silla', 'sillón', 'asiento'],
+  completed: false,
+  active: false,
+},
+{
+  id: 9,
+  e: 'magazine',
+  s: ['revista'],
+  completed: false,
+  active: false,
+},
+{
+  id: 10,
+  e: 'trousers',
+  s: ['pantalón', 'pantalones'],
+  completed: false,
+  active: false,
+},
+{
+  id: 11,
+  e: 'eyelash',
+  s: ['pestaña', 'pestañas'],
+  completed: false,
+  active: false,
+},
+{
+  id: 12,
+  e: 'keyboard',
+  s: ['teclado'],
+  completed: false,
+  active: false,
+},
+{
+  id: 13,
+  e: 'comedy',
+  s: ['comedia'],
+  completed: false,
+  active: false,
+},
+{
+  id: 14,
+  e: 'socks',
+  s: ['medias', 'media', 'calcetines', 'calcetas'],
+  completed: false,
+  active: false,
+},
+{
+  id: 15,
+  e: 'tower',
+  s: ['torre'],
+  completed: false,
+  active: false,
+},
+{
+  id: 16,
+  e: 'bunny',
+  s: ['conejo', 'coneja'],
+  completed: false,
+  active: false,
+}
+];
 
 export default words;
