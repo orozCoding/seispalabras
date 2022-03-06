@@ -105,8 +105,15 @@ const words = [{
 },
 {
   id: 16,
-  e: 'bunny',
+  e: 'rabbit',
   s: ['conejo', 'coneja'],
+  completed: false,
+  active: false,
+},
+{
+  id: 17,
+  e: 'wig',
+  s: ['peluca', 'peluquín'],
   completed: false,
   active: false,
 }

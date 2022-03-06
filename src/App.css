@@ -93,7 +93,7 @@ a:active {
 }
 
 form {
-  gap: 5px;
+  gap: 7px;
   padding: 20px;
   background-color: white;
   border-radius: 8px;
@@ -109,7 +109,7 @@ form {
 }
 
 .form-input-container {
-  gap: 6px;
+  gap: 10px;
 }
 
 form input {
