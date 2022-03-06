@@ -30,7 +30,6 @@ const Home = (props) => {
           <p>Congratulations!</p>
           <p>You finished today.</p>
           <p>New words tomorrow!</p>
-          <p>In: </p>
         </div>
       )
     }
