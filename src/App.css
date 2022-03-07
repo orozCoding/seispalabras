@@ -82,14 +82,15 @@ a:active {
 
 /* Home */ 
 
-.title {
-  font-size: 30px;
-  color: #f1a71c;
-}
-
 #home-container {
   margin-top: 15px;
   gap: 15px;
+  max-width: 600px;
+}
+
+.title {
+  font-size: 30px;
+  color: #f1a71c;
 }
 
 .form-container {
@@ -147,6 +148,7 @@ form button:hover {
   gap: 20px;
   width: 80%;
   align-items: center;
+  max-width: 600px;
 }
 
 .completedWords {
@@ -174,6 +176,7 @@ form button:hover {
   width: 80%;
   align-items: center;
   font-size: 18px;
+  max-width: 600px;
 }
 
 .myLink,
