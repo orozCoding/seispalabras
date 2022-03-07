@@ -22,7 +22,7 @@ User is also able to check the translated words and track their progress.
 👤 **Angel Orozco (orozCoding)**
 
 - GitHub: [@orozCoding](https://github.com/orozCoding)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/angel-orozco-652230228/)
+- LinkedIn: [Angel Orozco](https://www.linkedin.com/in/angel-orozco-652230228/)
 
 ## 🤝 Contributing
 
