@@ -18,13 +18,13 @@ const App = () => {
     if (!completed.length) {
       dispatch(getCompleted());
     }
-  }, []);
+  }, [completed.length, dispatch]);
 
   useEffect(() => {
     if (!actives.length) {
       dispatch(getActiveWords());
     }
-  }, []);
+  }, [actives.length, dispatch]);
 
   return (
     <div className="appBody d-flex col">
