@@ -12,6 +12,9 @@ const NavBar = () => {
         <li key={'Completed'}>
           <NavLink to="/Completed" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>COMPLETED</NavLink>
         </li>
+        <li key={'About'}>
+          <NavLink to="/About" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>ABOUT</NavLink>
+        </li>
       </ul>
     </nav>
   )

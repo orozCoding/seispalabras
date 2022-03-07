@@ -71,6 +71,10 @@ a:active {
   color: #b1b1b1;
 }
 
+.pageLink:hover {
+  color: #e6e6e6;
+}
+
 #pagesList {
   gap: 30px;
   padding: 10px 0;
@@ -118,12 +122,18 @@ form input {
   border: solid 1px #f1a71c;
   outline: none;
   font-family: 'Ubuntu', sans-serif;
+  border-radius: 6px;
 }
 
 form button {
   padding: 5px 10px;
   background-color: #fff;
   border: solid 1px #f1a71c;
+  border-radius: 6px;
+}
+
+form button:hover {
+  background-color:#ffdea0;
 }
 
 .correctText {
@@ -147,7 +157,36 @@ form button {
   color: #f1a71c;
 }
 
+.possibleWord {
+  color: #ffdb99;
+}
+
 .finalMsg {
   margin-top: 10px;
+  color: #f1a71c;
+}
+
+/* About page */
+
+.about-container {
+  margin-top: 15px;
+  gap: 20px;
+  width: 80%;
+  align-items: center;
+  font-size: 18px;
+}
+
+.myLink,
+.myLink:visited,
+.myLink:active,
+.myLink:focus {
+  color: #f1a71c;
+}
+
+.myLink:hover {
+  color: #ffdea0;
+}
+
+.appName {
   color: #f1a71c;
 }

@@ -7,6 +7,7 @@ import './App.css';
 import Home from './pages/homePage';
 import Completed from "./pages/completed";
 import NavBar from "./components/header/navBar";
+import About from "./pages/aboutPage";
 
 const App = () => {
   const completed = useSelector((state) => state.completed);
@@ -35,6 +36,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home actives={actives} />} />
           <Route path='/Completed' element={<Completed completed={completed} />} />
+          <Route path='/About' element={<About />} />
         </Routes>
       </Router>
     </div>

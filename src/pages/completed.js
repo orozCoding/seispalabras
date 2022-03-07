@@ -11,7 +11,7 @@ const Completed = (props) => {
         return (
           <div key={word.id} className="d-flex col">
             <p><span className="completedWord">{word.e.toUpperCase()}</span> in Spanish can be:</p>
-            <p>{word.s.join(', ')} and more.</p>
+            <p><span className="possibleWord">{word.s.join(', ')}</span> and more.</p>
           </div>
         )
       })}
