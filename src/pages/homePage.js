@@ -38,7 +38,7 @@ const Home = (props) => {
 
   return (
     <section id="home-container" className="d-flex col">
-      <p className="title bold">Tres Palabras Diarias</p>
+      <p className="title bold">Seis Palabras Diarias</p>
       <p>Type a Spanish word for:</p>
       <ActiveWords actives={actives} />
       <div>

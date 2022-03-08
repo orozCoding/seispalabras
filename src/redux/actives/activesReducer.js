@@ -34,12 +34,12 @@ const createActiveWords = () => {
   if (completed.length) {
     possibles = filterArrays(words, completed);
     possibles.sort(() => 0.5 - Math.random());
-    activeWords = possibles.splice(0, 3);
+    activeWords = possibles.splice(0, 6);
     return activeWords;
   } else {
     possibles = [...words]
     possibles.sort(() => 0.5 - Math.random());
-    activeWords = possibles.splice(0, 3);
+    activeWords = possibles.splice(0, 6);
     return activeWords;
   }
 }

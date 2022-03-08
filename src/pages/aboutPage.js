@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div className="about-container d-flex col">
       <p className="title bold">About</p>
-      <p><span className="appName">Tres Palabras</span> is a web app for Spanish students on which they can try to translate 3 words every day.</p>
+      <p><span className="appName">Seis Palabras</span> is a web app for Spanish students on which they can try to translate 3 words every day.</p>
       <p>The app currently work with the local memory of the browser. Which means that the user will be able
         to keep and track their progress as long as they always visit the app from the same device and browser
         and without deleting or clearing browser memory.
