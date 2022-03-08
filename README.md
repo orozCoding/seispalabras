@@ -1,6 +1,6 @@
-# Tres Palabras
+# Seis Palabras
 
-Tres Palabras is a web app for Spanish students on which they can try to translate 3 words every day.
+Seis Palabras is a web app for Spanish students in which they can try to translate 3 words every day.
 
 User is also able to check the translated words and track their progress.
 
