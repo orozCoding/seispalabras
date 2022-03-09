@@ -8,7 +8,7 @@ const filterGuess = (answer) => {
   if (checkForAccentMark(answer)) {
     return answer.toLowerCase();
   }
-  let filtered = answer.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+  let filtered = answer.toLowerCase().normalize("NFD").replace(/\p{Diacritic}|\s/gu, "");
   return filtered;
 }
 
