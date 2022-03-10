@@ -1,4 +1,5 @@
 import React from "react";
+import words from "../components/words/allWords";
 
 const About = () => {
   return (
@@ -14,7 +15,8 @@ const About = () => {
         If there's a mistake in any of them, please let me know.
       </p>
       <p className="versionText">If you have any suggestion, please <a className="myLink" href="mailto:orozcoding@gmail.com">get in touch</a>.</p>
-      <p className="versionText">Version: <span className="possibleWord">beta 0.2.0</span>.</p>
+      <p className="versionText">Total words added: <span className="possibleWord">{words.length}</span>. Goal: 2,232.</p>
+      <p className="finalMsg small">Version: <span className="possibleWord">beta 0.3.0</span>.</p>
     </div>
   )
 };

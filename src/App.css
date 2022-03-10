@@ -203,7 +203,8 @@ form button:hover {
   color: #f1a71c;
 }
 
-.versionText {
+.versionText,
+.small {
   font-size: 13px;
 }
 
