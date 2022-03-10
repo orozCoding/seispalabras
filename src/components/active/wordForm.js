@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { checkAnswer } from "../../redux/actives/activesReducer";
 import { checkAnswerCompleted } from "../../redux/completed/completedReducer";
 import { useDispatch } from "react-redux";
