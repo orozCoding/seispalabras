@@ -29,7 +29,7 @@ const Home = (props) => {
         <div>
           <p>Congratulations!</p>
           <p>You finished today.</p>
-          <p>New words tomorrow!</p>
+          <p className="finalMsg">New words tomorrow!</p>
         </div>
       )
     }

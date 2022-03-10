@@ -165,7 +165,7 @@ form button:hover {
 }
 
 .finalMsg {
-  margin-top: 10px;
+  margin: 10px 0 20px 0;
   color: #f1a71c;
 }
 
@@ -193,6 +193,10 @@ form button:hover {
 
 .appName {
   color: #f1a71c;
+}
+
+.versionText {
+  font-size: 13px;
 }
 
 /* Not found */
