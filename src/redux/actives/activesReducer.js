@@ -69,7 +69,7 @@ const completeActiveWord = (active, actives) => (dispatch) => {
   newActives.map((word) => {
     if (word.id === active.id)
       word.completed = true;
-      return true;
+    return true;
   })
 
   storageActiveWords(newActives);
@@ -86,9 +86,8 @@ const checkAnswer = (answer, active, actives) => (dispatch) => {
   if (correctAnswers.includes(answer)) {
     dispatch(completeActiveWord(active, actives));
     return true;
-  } else {
-    return false;
   }
+  return false;
 };
 
 const reducer = (state = [], action) => {

@@ -109,6 +109,14 @@ form {
   height: 150px;
 }
 
+.tried {
+  border: solid 1px red;
+}
+
+.goodTry {
+  border: solid 1px rgb(13, 175, 35);
+}
+
 .wordTitle {
   font-size: 23px;
   color: #000;

@@ -330,7 +330,7 @@ const words = [{
 {
   id: 48,
   e: 'sword',
-  s: ['auto', 'carro', 'coche'],
+  s: ['espada'],
   completed: false,
   active: false,
 },
