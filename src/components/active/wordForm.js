@@ -3,7 +3,6 @@ import { checkAnswer } from "../../redux/actives/activesReducer";
 import { checkAnswerCompleted } from "../../redux/completed/completedReducer";
 import { useDispatch } from "react-redux";
 
-
 const WordForm = (props) => {
   const { actives, active } = props;
   const [tried, setTried] = useState('');
@@ -11,6 +10,7 @@ const WordForm = (props) => {
   const dispatch = useDispatch();
 
   const handleClick = (active) => {
+       
     const input = document.getElementById(`input-${active.id}`);
     const answer = input.value;
     
