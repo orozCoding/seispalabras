@@ -9,7 +9,7 @@ const About = () => {
         to keep and track their progress as long as they always visit the app from the same device and browser
         and without deleting or clearing browser memory.
       </p>
-      <p>Made By <a href="https://github.com/orozCoding" className="myLink">orozCoding</a></p>
+      <p>Made By <a href="https://github.com/orozCoding" className="myLink">orozCoding</a>.</p>
       <p>If you have any suggestion, please <a className="myLink" href="mailto:orozcoding@gmail.com">contact me</a>.</p>
     </div>
   )
