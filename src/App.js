@@ -9,7 +9,6 @@ import Completed from "./pages/completed";
 import NavBar from "./components/header/navBar";
 import About from "./pages/aboutPage";
 import NotFound from "./pages/notFoundPage";
-import Screenfull from "screenfull-react";
 
 const App = () => {
 
@@ -33,7 +32,6 @@ const App = () => {
 
   return (
     <div className="appBody d-flex col">
-      <Screenfull forceFullScreen={true} />
       <Router>
         <header className="header">
           <NavBar />
