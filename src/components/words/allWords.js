@@ -652,7 +652,7 @@ const words = [{
 {
   id: 94,
   e: 'square',
-  s: ['plaza', 'casilla', 'cuadro', 'escuadra', 'recuadro'],
+  s: ['plaza', 'casilla', 'cuadro', 'escuadra', 'recuadro', 'cuadrado'],
   completed: false,
   active: false,
 },
