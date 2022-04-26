@@ -31,11 +31,12 @@ const WordForm = (props) => {
       onSubmit={(e) => {
         e.preventDefault();
         handleClick(active)
-      }}>
+      }}
+      autocomplete="off">
       <div className="wordTitle rub bold">{active.e.toUpperCase()}</div>
       {!active.completed && (
         <div className="d-flex col form-input-container">
-          <input id={`input-${active.id}`} name="answer" type="text" placeholder="... in Spanish" className={tried}></input>
+          <input id={`input-${active.id}`} name="answer" type="text" placeholder="... in Spanish" className={tried} autocomplete="off" />
           <button type="submit" className={`click formButton ${tried}`}>SUBMIT</button>
         </div>)}
       {active.completed && (<div className="correctText bold">Correct!</div>)}
