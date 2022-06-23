@@ -5,11 +5,11 @@ import { addCompleted } from "../../redux/completedSlice";
 import { completeActiveWord, wrongGuess } from "../../redux/activesSlice";
 
 const WordForm = (props) => {
-  const { actives, active } = props;
+  const { active } = props;
 
   const dispatch = useDispatch();
 
-  const checkAnswer = (answer, active) => {
+  const checkAnswer = (answer) => {
     answer = filterGuess(answer);
     let correctAnswers = filterCorrectAnswers(answer, active);
     if (correctAnswers.includes(answer)) {
@@ -21,13 +21,10 @@ const WordForm = (props) => {
     return false;
   };
 
-  const handleClick = (active) => {
-
-    const input = document.getElementById(`input-${active.id}`);
-    const answer = input.value;
-
-    checkAnswer(answer, active, actives);
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const answer = e.target.answer.value
+    checkAnswer(answer);
   };
 
   const checkTries = () => {
@@ -42,10 +39,7 @@ const WordForm = (props) => {
       id={`form-${active.id}`}
       className={`d-flex col ${checkTries()}`}
       key={active.id}
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleClick(active)
-      }}
+      onSubmit={handleSubmit}
       autoComplete="off">
       <div className="wordTitle rub bold">{active.e.toUpperCase()}</div>
       {!active.completed && (
