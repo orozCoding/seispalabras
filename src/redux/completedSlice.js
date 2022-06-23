@@ -13,14 +13,8 @@ const checkCompleted = () => {
 };
 
 const pushCompleted = (word) => {
-  // console.log('this is the word');
-  // console.log(word);
   const completed = JSON.parse(localStorage.getItem('completed'));
-  // console.log('this is the completed');
-  // console.log(completed);
   completed.push(word);
-  // console.log('I created this');
-  // console.log(word);
   localStorage.setItem('completed', JSON.stringify(completed));
 
   return completed;

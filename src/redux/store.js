@@ -1,21 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import activesReducer from './activesSlice';
 import completedReducer from './completedSlice';
-
-// const reducer = combineReducers({
-//   completed: completedReducer,
-//   actives: activesReducer,
-// });
-
-// const store = configureStore (
-//   reducer,
-//   applyMiddleware(thunk, logger)
-// );
+import userReducer from './userSlice'
 
 export const store = configureStore({
   reducer: {
     completed: completedReducer,
     actives: activesReducer,
+    user: userReducer
   },
 });
 

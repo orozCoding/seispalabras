@@ -15,6 +15,9 @@ const NavBar = () => {
         <li key={'About'}>
           <NavLink to="/About" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>ABOUT</NavLink>
         </li>
+        <li key={'Login'}>
+          <NavLink to="/Login" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>LOGIN</NavLink>
+        </li>
       </ul>
     </nav>
   )

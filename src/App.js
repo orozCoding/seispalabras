@@ -8,6 +8,7 @@ import Home from './pages/homePage';
 import Completed from "./pages/completed";
 import NavBar from "./components/header/navBar";
 import About from "./pages/aboutPage";
+import LoginForm from "./components/login/LoginForm";
 import NotFound from "./pages/notFoundPage";
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/Completed' element={<Completed />} />
           <Route path='/About' element={<About />} />
+          <Route path='/Login' element={<LoginForm />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
