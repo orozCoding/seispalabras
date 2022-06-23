@@ -96,8 +96,7 @@ export const activesSlice = createSlice({
       return populateActiveWords();
     },
     completeActiveWord: (state, action) => {
-      const {active, actives} = action.payload
-      state = setNewActiveWords(active, actives)
+      state = setNewActiveWords(action.payload, state)
       return state
     },
     wrongGuess: (state, action) => {

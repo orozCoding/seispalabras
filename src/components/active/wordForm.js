@@ -9,27 +9,17 @@ const WordForm = (props) => {
 
   const dispatch = useDispatch();
 
-
-  const checkAnswer = (answer, active, actives) => {
+  const checkAnswer = (answer, active) => {
     answer = filterGuess(answer);
     let correctAnswers = filterCorrectAnswers(answer, active);
     if (correctAnswers.includes(answer)) {
-      dispatch(completeActiveWord({ active, actives }));
+      dispatch(completeActiveWord(active));
+      dispatch(addCompleted(active));
       return true;
     }
     dispatch(wrongGuess(active));
     return false;
   };
-
-  const checkAnswerCompleted = (answer, active) => {
-    answer = filterGuess(answer);
-    let correctAnswers = filterCorrectAnswers(answer, active);
-    if (correctAnswers.includes(answer)) {
-      dispatch(addCompleted(active));
-      return true;
-    }
-    return false;
-  }
 
   const handleClick = (active) => {
 
@@ -37,7 +27,6 @@ const WordForm = (props) => {
     const answer = input.value;
 
     checkAnswer(answer, active, actives);
-    checkAnswerCompleted(answer, active)
 
   };
 
