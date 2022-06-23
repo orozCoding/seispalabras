@@ -1,17 +1,15 @@
-import { DateTime } from "luxon";
-
-const date = new Date();
+const today = new Date();
 
 const getLastVisit = () => {
   return new Date(JSON.parse(localStorage.getItem('lastCheck')));
 }
 
 const storageDate = () => {
-  localStorage.setItem('lastCheck', JSON.stringify(date));
+  localStorage.setItem('lastCheck', JSON.stringify(today));
 }
 
 const checkSameDay = () => {
-  if (date === getLastVisit()) {
+  if (today === getLastVisit()) {
     return true;
   }
   return false;
@@ -22,7 +20,7 @@ const checkNewDay = () => {
     return true;
   }
   
-  if (date.getDate() !== getLastVisit().getDate()) {
+  if (today.getDate() !== getLastVisit().getDate()) {
     return true;
   }
   return false;
