@@ -1,13 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import WordForm from "./wordForm";
 
-const ActiveWords = (props) => {
-  const { actives } = props;
+const ActiveWords = () => {
+  const actives = useSelector((state) => state.actives);
 
   return (
     <div className="form-container d-flex col">{actives.map((active) => {
       return (
-        <WordForm key={active.id} actives={actives} active={active} />
+        <WordForm key={active.id} active={active} />
       )
     })}
     </div>

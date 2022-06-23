@@ -37,8 +37,8 @@ const App = () => {
           <NavBar />
         </header>
         <Routes>
-          <Route path='/' element={<Home actives={actives} />} />
-          <Route path='/Completed' element={<Completed completed={completed} />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/Completed' element={<Completed />} />
           <Route path='/About' element={<About />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

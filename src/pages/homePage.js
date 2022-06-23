@@ -1,8 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import ActiveWords from "../components/active/activeWords";
 
-const Home = (props) => {
-  const { actives } = props;
+const Home = () => {
+  const actives = useSelector((state) => state.actives)
 
   const checkFinished = () => {
     for (let i = 0; i < actives.length; i++) {

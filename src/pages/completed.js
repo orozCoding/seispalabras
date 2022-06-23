@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const Completed = (props) => {
-  const { completed } = props;
+const Completed = () => {
+  const completed = useSelector((state) => state.completed);
+  
   let i = 0;
   return (
     <section className="completed-container d-flex col">
