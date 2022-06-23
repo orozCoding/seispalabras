@@ -37,7 +37,7 @@ export const completedSlice = createSlice({
       return checkCompleted();
     },
     addCompleted: (state, action) => {
-      state = pushCompleted(action.payload)
+      return state = pushCompleted(action.payload)
     }
   }
 })

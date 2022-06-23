@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { filterGuess, filterCorrectAnswers } from "../words/wordFilters"
 import { useDispatch } from "react-redux";
 import { addCompleted } from "../../redux/completedSlice";
@@ -6,7 +6,6 @@ import { completeActiveWord, wrongGuess } from "../../redux/activesSlice";
 
 const WordForm = (props) => {
   const { actives, active } = props;
-  const [tried, setTried] = useState('');
 
   const dispatch = useDispatch();
 
@@ -62,8 +61,8 @@ const WordForm = (props) => {
       <div className="wordTitle rub bold">{active.e.toUpperCase()}</div>
       {!active.completed && (
         <div className="d-flex col form-input-container">
-          <input id={`input-${active.id}`} name="answer" type="text" placeholder="... in Spanish" className={tried} autoComplete="off" />
-          <button type="submit" className={`click formButton ${tried}`}>SUBMIT</button>
+          <input id={`input-${active.id}`} name="answer" type="text" placeholder="... in Spanish" className={checkTries()} autoComplete="off" />
+          <button type="submit" className={`click formButton ${checkTries()}`}>SUBMIT</button>
         </div>)}
       {active.completed && (<div className="correctText bold">Correct!</div>)}
     </form>

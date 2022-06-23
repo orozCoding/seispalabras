@@ -1,9 +1,9 @@
 import { DateTime } from "luxon";
 
-const date = DateTime.now().toObject();
+const date = new Date();
 
 const getLastVisit = () => {
-  return JSON.parse(localStorage.getItem('lastCheck'));
+  return new Date(JSON.parse(localStorage.getItem('lastCheck')));
 }
 
 const storageDate = () => {
@@ -22,9 +22,7 @@ const checkNewDay = () => {
     return true;
   }
   
-  if ((date.year > getLastVisit().year)
-    || (date.month > getLastVisit().month && date.year >= getLastVisit().year)
-    || (date.day > getLastVisit().day && date.month >= getLastVisit().month && date.year >= getLastVisit().year)) {
+  if (date.getDate() !== getLastVisit().getDate()) {
     return true;
   }
   return false;
