@@ -1,9 +1,6 @@
-import words from "../../components/words/allWords";
-import { checkSameDay, storageNewDay, checkNewDay } from "../../components/dates/dates";
-import { filterGuess, filterCorrectAnswers } from "../../components/words/wordFilters";
-
-const GET_ACTIVES = 'redux/actives/GET_ACTIVES';
-const COMPLETE_ACTIVE = 'redux/actives/UPDATE_ACTIVES';
+import words from "../components/words/allWords";
+import { checkSameDay, storageNewDay, checkNewDay } from "../components/dates/dates";
+import { createSlice } from '@reduxjs/toolkit';
 
 const filterArrays = (arr1, arr2) => {
   let arr = [...arr1];
@@ -50,56 +47,68 @@ const checkActiveWords = () => {
   } else if (loadActiveWords() && !checkNewDay()) {
     return loadActiveWords();
   }
+
   return createActiveWords();
 }
 
-const getActiveWords = () => (dispatch) => {
+const populateActiveWords = () => {
   const active = checkActiveWords();
   storageActiveWords(active);
   storageNewDay();
 
-  dispatch({
-    type: GET_ACTIVES,
-    playload: active,
-  });
+  return active
 };
 
-const completeActiveWord = (active, actives) => (dispatch) => {
-  const newActives = [...actives];
-  newActives.map((word) => {
-    if (word.id === active.id)
-      word.completed = true;
-    return true;
+const setNewActiveWords = (active, actives) => {
+  let newActives = actives.map((word) => {
+    if (word.id === active.id) {
+      word = {...word, completed: true, tried: false}
+    }
+    return word;
   })
 
   storageActiveWords(newActives);
 
-  dispatch({
-    type: COMPLETE_ACTIVE,
-    playload: newActives,
+  return newActives;
+}
+
+const handleWrongGuess = (state, active) => {
+  let newActives = state.map((word) => {
+    if (word.id === active.id) {
+      word = {...word, tried: true}
+    }
+    return word
   })
+
+  storageActiveWords(newActives);
+
+  return newActives;
 }
 
-const checkAnswer = (answer, active, actives) => (dispatch) => {
-  answer = filterGuess(answer);
-  let correctAnswers = filterCorrectAnswers(answer, active);
-  if (correctAnswers.includes(answer)) {
-    dispatch(completeActiveWord(active, actives));
-    return true;
-  }
-  return false;
-};
 
-const reducer = (state = [], action) => {
-  switch (action.type) {
-    case GET_ACTIVES:
-      return action.playload;
-    case COMPLETE_ACTIVE:
-      return action.playload;
-    default:
+const initialState = [];
+
+export const activesSlice = createSlice({
+  name: 'actives',
+  initialState,
+  reducers: {
+    getActiveWords: () => {
+      return populateActiveWords();
+    },
+    completeActiveWord: (state, action) => {
+      const {active, actives} = action.payload
+      state = setNewActiveWords(active, actives)
+      return state
+    },
+    wrongGuess: (state, action) => {
+      const active = action.payload
+      state = handleWrongGuess(state, active)
       return state;
+    },
   }
-}
+})
 
-export default reducer;
-export { getActiveWords, checkAnswer };
+export const { getActiveWords, completeActiveWord, wrongGuess } = activesSlice.actions;
+
+
+export default activesSlice.reducer;

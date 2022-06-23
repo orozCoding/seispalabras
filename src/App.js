@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { getCompleted } from "./redux/completed/completedReducer";
-import { getActiveWords } from "./redux/actives/activesReducer";
+import { getCompleted } from "./redux/completedSlice";
+import { getActiveWords } from "./redux/activesSlice";
 import './App.css';
 import Home from './pages/homePage';
 import Completed from "./pages/completed";
