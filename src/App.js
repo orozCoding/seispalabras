@@ -4,12 +4,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getCompleted } from "./redux/completedSlice";
 import { getActiveWords } from "./redux/activesSlice";
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/homePage';
 import Completed from "./pages/completed";
 import NavBar from "./components/header/navBar";
 import About from "./pages/aboutPage";
 import LoginPage from "./pages/loginPage";
 import NotFound from "./pages/notFoundPage";
+import { ToastContainer } from 'react-toastify';
+import { checkSession } from "./redux/userSlice";
 
 const App = () => {
 
@@ -30,9 +33,14 @@ const App = () => {
     }
   }, [actives.length, dispatch]);
 
+  useEffect(() => {
+    dispatch(checkSession());
+  }, [])
+
 
   return (
     <div className="appBody d-flex col">
+      <ToastContainer />
       <Router>
         <header className="header">
           <NavBar />
