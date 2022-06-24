@@ -10,6 +10,7 @@ import Completed from "./pages/completed";
 import NavBar from "./components/header/navBar";
 import About from "./pages/aboutPage";
 import LoginPage from "./pages/loginPage";
+import SignUpPage from "./pages/signUpPage";
 import NotFound from "./pages/notFoundPage";
 import { ToastContainer } from 'react-toastify';
 import { checkSession } from "./redux/userSlice";
@@ -35,7 +36,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkSession());
-  }, [])
+  }, [dispatch])
 
 
   return (
@@ -50,6 +51,7 @@ const App = () => {
           <Route path='/Completed' element={<Completed />} />
           <Route path='/About' element={<About />} />
           <Route path='/Login' element={<LoginPage />} />
+          <Route path='/Signup' element={<SignUpPage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>

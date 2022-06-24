@@ -12,7 +12,7 @@ const LoginForm = () => {
     const form = e.target
 
     const input = {
-      "email": form.email.value,
+      "email": form.email.value.toLowerCase(),
       "password": form.password.value.toString(),
       "remember": form.remember.checked
     }

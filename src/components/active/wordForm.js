@@ -37,7 +37,7 @@ const WordForm = (props) => {
   return (
     <form
       id={`form-${active.id}`}
-      className={`d-flex col ${checkTries()}`}
+      className={`d-flex col ${checkTries()} word-form`}
       key={active.id}
       onSubmit={handleSubmit}
       autoComplete="off">

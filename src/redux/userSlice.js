@@ -1,12 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setTokenCookie, getTokenCookie, deleteTokenCookie } from './shared/cookies';
 
+
 const initialState = {
   logged: false,
+  registered: false,
   status: 'idle',
-  error: null,
+  error: {login: [], signup: []},
   student: null,
 };
+
+const fetchSignup = async (input) => {
+  const url = 'http://localhost:3000/users'
+  console.log(JSON.stringify(input));
+
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(input),
+  })
+    .then((resp) => resp.json())
+    .then((data) => data)
+
+  return resp
+}
 
 const fetchLogin = async (input) => {
   const url = 'http://localhost:3000/auth/login'
@@ -39,6 +58,16 @@ const fetchSession = async (token) => {
 
   return resp
 }
+
+export const signup = createAsyncThunk(
+  'user/signup',
+  async (input) => {
+    const response = await fetchSignup(input);
+    // The value we return becomes the `fulfilled` action payload
+    console.log(response);
+    return response;
+  }
+);
 
 export const login = createAsyncThunk(
   'user/login',
@@ -81,22 +110,39 @@ export const userSlice = createSlice({
     logOut: () => {
       deleteTokenCookie();
       return initialState
+    },
+    cleanErrors: (state) => {
+      state.error = {login: null, signup: null}
+    },
+    cleanRegistered: (state) => {
+      state.registered = false;
     }
   },
   extraReducers: (builder) => {
     builder
+      .addCase(signup.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(signup.fulfilled, (state, action) => {
+        if(!action.payload.id) {
+          state.error.signup = action.payload
+        } else if (action.payload.id){
+          state.registered = true;
+        }
+        state.status = 'idle'
+      })
       .addCase(login.pending, (state) => {
         state.status = 'loading'
       })
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload.error) {
-          state.error = action.payload.error;
+          state.error.login = action.payload.error;
           state.student = null;
           state.logged = false;
         } else {
           state.student = action.payload;
           state.logged = true;
-          state.error = null;
+          state.error.login = null;
         }
         state.status = 'idle';
       })
@@ -116,7 +162,8 @@ export const userSlice = createSlice({
   }
 })
 
-export const { getCompleted, addCompleted, logOut } = userSlice.actions;
+export const { getCompleted, addCompleted,
+  logOut, cleanErrors, cleanRegistered } = userSlice.actions;
 
 
 export default userSlice.reducer;

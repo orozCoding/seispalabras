@@ -102,7 +102,7 @@ button {
   gap: 30px;
 }
 
-form {
+.word-form {
   gap: 7px;
   padding: 20px;
   background-color: white;
