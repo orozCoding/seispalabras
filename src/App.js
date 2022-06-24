@@ -32,6 +32,7 @@ const App = () => {
   useEffect(() => {
     if (user.logged) {
       dispatch(getActiveWords(user.student.token));
+      console.log(user.student.token);
     }
   }, [user, dispatch]);
 

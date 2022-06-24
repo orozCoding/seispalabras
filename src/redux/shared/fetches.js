@@ -62,7 +62,9 @@ const fetchWordList = async (token) => {
     .then((resp) => resp.json())
     .then((data) => data);
 
-  
+  if(!resp) {
+    return false;
+  }
   return resp
 }
 

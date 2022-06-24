@@ -26,6 +26,7 @@ const storageActiveWords = (words) => {
 }
 
 const createActiveWords = (token) => {
+  console.log('doing');
   let possibles = [];
   let activeWords = [];
   let completed = JSON.parse(localStorage.getItem('completed'));
@@ -46,14 +47,17 @@ const createActiveWords = (token) => {
 
 const checkActiveWords = async (token) => {
   const serverList = await fetchWordList(token);
-  
-  if (serverList.list && checkSameDay()) {
+
+  if (serverList && checkSameDay()) {
     return JSON.parse(serverList.list);
   } else if (serverList && !checkNewDay()) {
     return JSON.parse(serverList.list);
   }
 
-  return createActiveWords(token);
+  if (!serverList){
+    return createActiveWords(token);
+  }
+
 }
 
 const populateActiveWords = async (token) => {
@@ -65,15 +69,19 @@ const populateActiveWords = async (token) => {
   return active
 };
 
-const setNewActiveWords = (active, actives) => {
-  let newActives = actives.map((word) => {
+const setNewActiveWords = (payload, state) => {
+
+  const {active, token} = payload;
+
+  let newActives = state.map((word) => {
     if (word.id === active.id) {
       word = {...word, completed: true, tried: false}
     }
     return word;
   })
-
+  
   storageActiveWords(newActives);
+  fetchCreateWordList(token, newActives);
 
   return newActives;
 }

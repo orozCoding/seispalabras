@@ -1,11 +1,12 @@
 import React from "react";
 import { filterGuess, filterCorrectAnswers } from "../words/wordFilters"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCompleted } from "../../redux/completedSlice";
 import { completeActiveWord, wrongGuess } from "../../redux/activesSlice";
 
 const WordForm = (props) => {
   const { active } = props;
+  const token = useSelector((state) => state.user.student.token);
 
   const dispatch = useDispatch();
 
@@ -13,7 +14,7 @@ const WordForm = (props) => {
     answer = filterGuess(answer);
     let correctAnswers = filterCorrectAnswers(answer, active);
     if (correctAnswers.includes(answer)) {
-      dispatch(completeActiveWord(active));
+      dispatch(completeActiveWord({active, token}));
       dispatch(addCompleted(active));
       return true;
     }
