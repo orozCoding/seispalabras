@@ -112,7 +112,7 @@ export const userSlice = createSlice({
       return initialState
     },
     cleanErrors: (state) => {
-      state.error = {login: null, signup: null}
+      state.error = {login: [], signup: []}
     },
     cleanRegistered: (state) => {
       state.registered = false;
@@ -128,6 +128,7 @@ export const userSlice = createSlice({
           state.error.signup = action.payload
         } else if (action.payload.id){
           state.registered = true;
+          state.error.signup = []
         }
         state.status = 'idle'
       })
@@ -142,7 +143,7 @@ export const userSlice = createSlice({
         } else {
           state.student = action.payload;
           state.logged = true;
-          state.error.login = null;
+          state.error.login = [];
         }
         state.status = 'idle';
       })
