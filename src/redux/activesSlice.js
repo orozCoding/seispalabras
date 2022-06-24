@@ -1,7 +1,6 @@
-import words from "../components/words/allWords";
-import { checkSameDay, storageNewDay, checkNewDay } from "../components/dates/dates";
+// import words from "../components/words/allWords";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchWordList, fetchCreateWordList, fetchTranslations, filterCompleted } from "./shared/fetches";
+import { fetchAllWords, fetchWordList, fetchCreateWordList, fetchTranslations, filterCompleted } from "./shared/fetches";
 
 const filterArrays = (arr1, arr2) => {
   let arr = [...arr1];
@@ -21,12 +20,13 @@ const filterArrays = (arr1, arr2) => {
 //   return JSON.parse(localStorage.getItem('activeWords'));
 // }
 
-const storageActiveWords = (words) => {
-  localStorage.setItem('activeWords', JSON.stringify(words))
-}
+// const storageActiveWords = (words) => {
+//   localStorage.setItem('activeWords', JSON.stringify(words))
+// }
 
 const createActiveWords = async (token) => {
   console.log('doing');
+  let words = await fetchAllWords();
   let possibles = [];
   let activeWords = [];
   // let completed = JSON.parse(localStorage.getItem('completed'));
@@ -50,10 +50,10 @@ const createActiveWords = async (token) => {
 
 const checkActiveWords = async (token) => {
   const serverList = await fetchWordList(token);
+  const today = new Date().getDate();
+  const lastDate = new Date(serverList.updated_at).getDate()
 
-  if (serverList && checkSameDay()) {
-    return JSON.parse(serverList.list);
-  } else if (serverList && !checkNewDay()) {
+  if (serverList && today === lastDate) {
     return JSON.parse(serverList.list);
   }
 
@@ -67,7 +67,6 @@ const populateActiveWords = async (token) => {
   // const active = await fetchWordList();
   const active = await checkActiveWords(token);
   // storageActiveWords(active);
-  storageNewDay();
 
   return active
 };
@@ -83,7 +82,7 @@ const setNewActiveWords = (payload, state) => {
     return word;
   })
   
-  storageActiveWords(newActives);
+  // storageActiveWords(newActives);
   fetchCreateWordList(token, newActives);
 
   return newActives;
@@ -97,7 +96,7 @@ const handleWrongGuess = (state, active) => {
     return word
   })
 
-  storageActiveWords(newActives);
+  // storageActiveWords(newActives);
 
   return newActives;
 }

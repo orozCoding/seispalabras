@@ -1,6 +1,19 @@
-import words from "../../components/words/allWords"
-
 const baseURL = 'http://localhost:3000'
+
+const fetchAllWords = async () => {
+  const url = `${baseURL}/default/list`
+
+  const resp = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((resp) => resp.json())
+    .then((data) => data)
+
+  return resp
+}
 
 const fetchLogin = async (input) => {
   const url = `${baseURL}/auth/login`
@@ -128,8 +141,9 @@ const fetchCreateTranslation = async (token, word) => {
   return resp
 }
 
-const filterCompleted = (translations) => {
+const filterCompleted = async (translations) => {
   let res = []; 
+  let words = await fetchAllWords();
 
   translations.forEach((word) => {
     word = words.filter((el) => el.id === word.word_id)
@@ -139,6 +153,6 @@ const filterCompleted = (translations) => {
   return res
 }
 
-export { fetchLogin, fetchSignup, fetchSession,
+export { fetchAllWords, fetchLogin, fetchSignup, fetchSession,
   fetchWordList, fetchCreateWordList, fetchTranslations,
   fetchCreateTranslation,filterCompleted };

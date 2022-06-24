@@ -8,7 +8,7 @@ const checkCompleted = async (token) => {
   let serverCompleted = await fetchTranslations(token)
 
   if (serverCompleted.length > 0) {
-    return filterCompleted(serverCompleted)
+    return await filterCompleted(serverCompleted)
   }
 
   return completed;
