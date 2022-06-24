@@ -109,21 +109,10 @@ const fetchTranslations = async (token) => {
 const fetchCreateTranslation = async (token, word) => {
   const url = `${baseURL}/translations`
   
-  console.log('estoy dentro del fetch');
-  console.log('esto es word');
-  console.log(word);
-
-  console.log(token);
-  console.log(url);
-
   const input = {
     word: word.e,
     word_id: word.id
   }
-
-  console.log('esto es input');
-  console.log(input);
-  console.log(JSON.stringify(input));
 
   const resp = await fetch(url,{
     method: 'POST',

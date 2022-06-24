@@ -12,21 +12,23 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(user.logged) {
+    if (user.logged) {
       navigate('/')
       toast(`Welcome ${user.student.name}`)
     }
   }, [user, navigate])
 
   useEffect(() => {
-    dispatch(cleanErrors());
+    return () => (
+      dispatch(cleanErrors())
+    );
   }, [dispatch])
 
   return (
     <>
       <div>Please Log In</div>
-      {user.error.login && 
-      <p>Wrong email or password</p>}
+      {user.error.login.length > 0 &&
+        <p>Wrong email or password</p>}
       <LoginForm />
     </>
   )
