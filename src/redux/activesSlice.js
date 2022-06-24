@@ -1,4 +1,3 @@
-// import words from "../components/words/allWords";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchAllWords, fetchWordList, fetchCreateWordList, fetchTranslations, filterCompleted } from "./shared/fetches";
 
