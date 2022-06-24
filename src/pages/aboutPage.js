@@ -1,7 +1,18 @@
-import React from "react";
-import words from "../components/words/allWords";
+import { useEffect, useState } from "react";
+import { fetchAllWords } from "../redux/shared/fetches";
 
 const About = () => {
+  const [words, setWords] = useState(100);
+
+  useEffect(() => {
+    const words = async () => {
+      const words = await fetchAllWords();
+      setWords(words)
+      return words
+    };
+    words();
+  }, [])
+
   return (
     <div className="about-container d-flex col">
       <p className="title bold">About</p>
