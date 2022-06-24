@@ -17,22 +17,15 @@ import { checkSession } from "./redux/userSlice";
 
 const App = () => {
 
-  const completed = useSelector((state) => state.completed);
-  const actives = useSelector((state) => state.actives);
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!completed.length) {
-      dispatch(getCompleted());
-    }
-  }, [completed.length, dispatch]);
-
-  useEffect(() => {
     if (user.logged) {
-      dispatch(getActiveWords(user.student.token));
       console.log(user.student.token);
+      dispatch(getActiveWords(user.student.token));
+      dispatch(getCompleted(user.student.token));
     }
   }, [user, dispatch]);
 

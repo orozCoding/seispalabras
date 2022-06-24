@@ -1,7 +1,7 @@
 import words from "../components/words/allWords";
 import { checkSameDay, storageNewDay, checkNewDay } from "../components/dates/dates";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchWordList, fetchCreateWordList } from "./shared/fetches";
+import { fetchWordList, fetchCreateWordList, fetchTranslations, filterCompleted } from "./shared/fetches";
 
 const filterArrays = (arr1, arr2) => {
   let arr = [...arr1];
@@ -25,24 +25,27 @@ const storageActiveWords = (words) => {
   localStorage.setItem('activeWords', JSON.stringify(words))
 }
 
-const createActiveWords = (token) => {
+const createActiveWords = async (token) => {
   console.log('doing');
   let possibles = [];
   let activeWords = [];
-  let completed = JSON.parse(localStorage.getItem('completed'));
-  if (completed.length) {
+  // let completed = JSON.parse(localStorage.getItem('completed'));
+  let completed = await fetchTranslations(token);
+  if (completed.length > 0) {
+    console.log('op1');
+    completed = filterCompleted(completed)
     possibles = filterArrays(words, completed);
     possibles.sort(() => 0.5 - Math.random());
     activeWords = possibles.splice(0, 6);
     fetchCreateWordList(token, activeWords);
     return activeWords;
-  } else {
-    possibles = [...words]
-    possibles.sort(() => 0.5 - Math.random());
-    activeWords = possibles.splice(0, 6);
-    fetchCreateWordList(token, activeWords);
-    return activeWords;
-  }
+  } 
+  console.log('op2');
+  possibles = [...words]
+  possibles.sort(() => 0.5 - Math.random());
+  activeWords = possibles.splice(0, 6);
+  fetchCreateWordList(token, activeWords);
+  return activeWords;
 }
 
 const checkActiveWords = async (token) => {
@@ -55,7 +58,7 @@ const checkActiveWords = async (token) => {
   }
 
   if (!serverList){
-    return createActiveWords(token);
+    return await createActiveWords(token);
   }
 
 }
@@ -63,7 +66,7 @@ const checkActiveWords = async (token) => {
 const populateActiveWords = async (token) => {
   // const active = await fetchWordList();
   const active = await checkActiveWords(token);
-  storageActiveWords(active);
+  // storageActiveWords(active);
   storageNewDay();
 
   return active

@@ -1,24 +1,38 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchTranslations, fetchCreateTranslation, filterCompleted } from './shared/fetches';
 
-const checkCompleted = () => {
+
+
+const checkCompleted = async (token) => {
   let completed = [];
+  let serverCompleted = await fetchTranslations(token)
 
-  if (localStorage.getItem('completed')) {
-    completed = JSON.parse(localStorage.getItem('completed'));
-  } else {
-    localStorage.setItem('completed', JSON.stringify(completed));
+  if (serverCompleted.length > 0) {
+    return filterCompleted(serverCompleted)
   }
 
   return completed;
 };
 
-const pushCompleted = (word) => {
-  const completed = JSON.parse(localStorage.getItem('completed'));
+const pushCompleted = (state, payload) => {
+  const completed = state;
+  const { active: word, token } = payload;
   completed.push(word);
-  localStorage.setItem('completed', JSON.stringify(completed));
+  fetchCreateTranslation(token, word)
 
   return completed;
 };
+
+
+export const getCompleted = createAsyncThunk(
+  'completed/getCompleted',
+  async (token) => {
+    const response = await checkCompleted(token);
+    // The value we return becomes the `fulfilled` action payload
+
+    return response;
+  }
+);
 
 
 const initialState = [];
@@ -27,16 +41,22 @@ export const completedSlice = createSlice({
   name: 'completed',
   initialState,
   reducers: {
-    getCompleted: () => {
-      return checkCompleted();
-    },
+    // getCompleted: () => {
+    //   return checkCompleted();
+    // },
     addCompleted: (state, action) => {
-      return state = pushCompleted(action.payload)
+      return state = pushCompleted(state, action.payload)
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCompleted.fulfilled, (state, action) => {
+        return state = action.payload
+      })
   }
 })
 
-export const { getCompleted, addCompleted } = completedSlice.actions;
+export const { addCompleted } = completedSlice.actions;
 
 
 export default completedSlice.reducer;

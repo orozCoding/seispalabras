@@ -15,7 +15,7 @@ const WordForm = (props) => {
     let correctAnswers = filterCorrectAnswers(answer, active);
     if (correctAnswers.includes(answer)) {
       dispatch(completeActiveWord({active, token}));
-      dispatch(addCompleted(active));
+      dispatch(addCompleted({active, token}));
       return true;
     }
     dispatch(wrongGuess(active));
