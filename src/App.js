@@ -19,6 +19,7 @@ const App = () => {
 
   const completed = useSelector((state) => state.completed);
   const actives = useSelector((state) => state.actives);
+  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
@@ -29,10 +30,10 @@ const App = () => {
   }, [completed.length, dispatch]);
 
   useEffect(() => {
-    if (!actives.length) {
-      dispatch(getActiveWords());
+    if (user.logged) {
+      dispatch(getActiveWords(user.student.token));
     }
-  }, [actives.length, dispatch]);
+  }, [user, dispatch]);
 
   useEffect(() => {
     dispatch(checkSession());

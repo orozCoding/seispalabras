@@ -1,6 +1,7 @@
 import words from "../components/words/allWords";
 import { checkSameDay, storageNewDay, checkNewDay } from "../components/dates/dates";
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchWordList, fetchCreateWordList } from "./shared/fetches";
 
 const filterArrays = (arr1, arr2) => {
   let arr = [...arr1];
@@ -16,15 +17,15 @@ const filterArrays = (arr1, arr2) => {
   return arr;
 }
 
-const loadActiveWords = () => {
-  return JSON.parse(localStorage.getItem('activeWords'));
-}
+// const loadActiveWords = () => {
+//   return JSON.parse(localStorage.getItem('activeWords'));
+// }
 
 const storageActiveWords = (words) => {
   localStorage.setItem('activeWords', JSON.stringify(words))
 }
 
-const createActiveWords = () => {
+const createActiveWords = (token) => {
   let possibles = [];
   let activeWords = [];
   let completed = JSON.parse(localStorage.getItem('completed'));
@@ -32,27 +33,32 @@ const createActiveWords = () => {
     possibles = filterArrays(words, completed);
     possibles.sort(() => 0.5 - Math.random());
     activeWords = possibles.splice(0, 6);
+    fetchCreateWordList(token, activeWords);
     return activeWords;
   } else {
     possibles = [...words]
     possibles.sort(() => 0.5 - Math.random());
     activeWords = possibles.splice(0, 6);
+    fetchCreateWordList(token, activeWords);
     return activeWords;
   }
 }
 
-const checkActiveWords = () => {
-  if (loadActiveWords() && checkSameDay()) {
-    return loadActiveWords();
-  } else if (loadActiveWords() && !checkNewDay()) {
-    return loadActiveWords();
+const checkActiveWords = async (token) => {
+  const serverList = await fetchWordList(token);
+  
+  if (serverList.list && checkSameDay()) {
+    return JSON.parse(serverList.list);
+  } else if (serverList && !checkNewDay()) {
+    return JSON.parse(serverList.list);
   }
 
-  return createActiveWords();
+  return createActiveWords(token);
 }
 
-const populateActiveWords = () => {
-  const active = checkActiveWords();
+const populateActiveWords = async (token) => {
+  // const active = await fetchWordList();
+  const active = await checkActiveWords(token);
   storageActiveWords(active);
   storageNewDay();
 
@@ -85,6 +91,16 @@ const handleWrongGuess = (state, active) => {
   return newActives;
 }
 
+export const getActiveWords = createAsyncThunk(
+  'active/getActiveWords',
+  async (token) => {
+    const response = await populateActiveWords(token);
+    // The value we return becomes the `fulfilled` action payload
+
+    return response;
+  }
+);
+
 
 const initialState = [];
 
@@ -92,9 +108,6 @@ export const activesSlice = createSlice({
   name: 'actives',
   initialState,
   reducers: {
-    getActiveWords: () => {
-      return populateActiveWords();
-    },
     completeActiveWord: (state, action) => {
       state = setNewActiveWords(action.payload, state)
       return state
@@ -104,10 +117,16 @@ export const activesSlice = createSlice({
       state = handleWrongGuess(state, active)
       return state;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+    .addCase(getActiveWords.fulfilled, (state, action) => {
+      return state = action.payload
+    })
   }
 })
 
-export const { getActiveWords, completeActiveWord, wrongGuess } = activesSlice.actions;
+export const { completeActiveWord, wrongGuess } = activesSlice.actions;
 
 
 export default activesSlice.reducer;

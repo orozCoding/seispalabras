@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setTokenCookie, getTokenCookie, deleteTokenCookie } from './shared/cookies';
+import { fetchSignup, fetchLogin, fetchSession } from './shared/fetches';
 
 
 const initialState = {
@@ -9,55 +10,6 @@ const initialState = {
   error: {login: [], signup: []},
   student: null,
 };
-
-const fetchSignup = async (input) => {
-  const url = 'http://localhost:3000/users'
-  console.log(JSON.stringify(input));
-
-  const resp = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(input),
-  })
-    .then((resp) => resp.json())
-    .then((data) => data)
-
-  return resp
-}
-
-const fetchLogin = async (input) => {
-  const url = 'http://localhost:3000/auth/login'
-
-  const resp = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(input),
-  })
-    .then((resp) => resp.json())
-    .then((data) => data)
-
-  return resp
-}
-
-const fetchSession = async (token) => {
-  const url = 'http://localhost:3000/session'
-
-  const resp = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `${token}`
-    }
-  })
-    .then((resp) => resp.json())
-    .then((data) => data)
-
-  return resp
-}
 
 export const signup = createAsyncThunk(
   'user/signup',
@@ -85,23 +37,15 @@ export const login = createAsyncThunk(
 export const checkSession = createAsyncThunk(
   'user/checkSession',
   async () => {
-    console.log('holiiis');
     const token = getTokenCookie();
 
     if (token) {
       const response = await fetchSession(token);
-      // The value we return becomes the `fulfilled` action payload
-      if (response.token) {
-        const date = new Date(response.exp)
-        setTokenCookie(response.token, date)
-      }
-      return response;
+      return { ...response , token: token};
     }
     return null
   }
 );
-
-
 
 export const userSlice = createSlice({
   name: 'user',
