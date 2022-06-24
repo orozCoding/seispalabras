@@ -2,7 +2,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logOut } from "../../redux/userSlice";
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
+import { restoreActives } from "../../redux/activesSlice";
+import { restoreCompleted } from "../../redux/completedSlice";
 
 const NavBar = () => {
 
@@ -15,6 +17,8 @@ const NavBar = () => {
 
   const handleSignOut = () => {
     dispatch(logOut());
+    dispatch(restoreActives());
+    dispatch(restoreCompleted());
     navigate('/')
     notify()
   }

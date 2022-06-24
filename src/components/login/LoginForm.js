@@ -39,7 +39,7 @@ const LoginForm = () => {
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Remember me:</strong>
-        <input type="checkbox" name="remember" className='login-form-checkbox' />
+        <input type="checkbox" name="remember" className='login-form-checkbox' defaultChecked={true} />
       </label>
       <input className="login-form-btn click" type="submit" value="SEND" />
     </form>

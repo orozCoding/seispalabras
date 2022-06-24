@@ -41,11 +41,11 @@ export const completedSlice = createSlice({
   name: 'completed',
   initialState,
   reducers: {
-    // getCompleted: () => {
-    //   return checkCompleted();
-    // },
     addCompleted: (state, action) => {
-      return state = pushCompleted(state, action.payload)
+      return state = pushCompleted(state, action.payload);
+    },
+    restoreCompleted: () => {
+      return initialState;
     }
   },
   extraReducers: (builder) => {
@@ -56,7 +56,7 @@ export const completedSlice = createSlice({
   }
 })
 
-export const { addCompleted } = completedSlice.actions;
+export const { addCompleted, restoreCompleted } = completedSlice.actions;
 
 
 export default completedSlice.reducer;

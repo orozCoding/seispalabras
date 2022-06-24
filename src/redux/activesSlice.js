@@ -15,14 +15,6 @@ const filterArrays = (arr1, arr2) => {
   return arr;
 }
 
-// const loadActiveWords = () => {
-//   return JSON.parse(localStorage.getItem('activeWords'));
-// }
-
-// const storageActiveWords = (words) => {
-//   localStorage.setItem('activeWords', JSON.stringify(words))
-// }
-
 const createActiveWords = async (token) => {
   console.log('doing');
   let words = await fetchAllWords();
@@ -126,6 +118,9 @@ export const activesSlice = createSlice({
       state = handleWrongGuess(state, active)
       return state;
     },
+    restoreActives: () => {
+      return initialState;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -135,7 +130,7 @@ export const activesSlice = createSlice({
   }
 })
 
-export const { completeActiveWord, wrongGuess } = activesSlice.actions;
+export const { completeActiveWord, wrongGuess, restoreActives } = activesSlice.actions;
 
 
 export default activesSlice.reducer;
