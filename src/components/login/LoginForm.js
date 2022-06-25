@@ -41,7 +41,7 @@ const LoginForm = () => {
         <strong className="login-form-text">Remember me:</strong>
         <input type="checkbox" name="remember" className='login-form-checkbox' defaultChecked={true} />
       </label>
-      <input className="login-form-btn click" type="submit" value="SEND" />
+      <input className="login-form-btn click" type="submit" value="LOGIN" />
     </form>
   )
 }

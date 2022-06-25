@@ -134,7 +134,7 @@ button {
   gap: 10px;
 }
 
-form input {
+.word-form input {
   padding: 3px 0;
   text-align: center;
   border: solid 1px #f1a71c;
@@ -143,14 +143,15 @@ form input {
   border-radius: 6px;
 }
 
-form button {
+.word-form button {
   padding: 5px 10px;
   background-color: #fff;
   border: solid 1px #f1a71c;
   border-radius: 6px;
+  font-size: 17px;
 }
 
-form button:hover {
+.word-form button:hover {
   background-color:#ffdea0;
 }
 
@@ -229,4 +230,56 @@ form button:hover {
 
 .text-link {
   color: var(--color-yellow)
+}
+
+
+/* login page */
+
+.login-container {
+  margin-top: 15px;
+  gap: 20px;
+  width: 80%;
+  align-items: center;
+  font-size: 18px;
+  max-width: 600px;
+}
+
+.login-form {
+  gap: 15px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.65);
+  color: #000;
+  width: 100%;
+  max-width: 350px;
+}
+
+.login-form label {
+  gap: 5px;
+}
+
+.login-form input {
+  padding: 8px 15px;
+  text-align: center;
+  border: solid 1px #f1a71c;
+  outline: none;
+  font-family: 'Ubuntu', sans-serif;
+  border-radius: 6px;
+}
+
+.login-form input.login-form-btn {
+  padding: 5px 15px;
+  background-color: #fff;
+  border: solid 1px #f1a71c;
+  border-radius: 6px;
+  font-size: 17px;
+}
+
+.login-form input.login-form-btn:hover {
+  background-color:#ffdea0;
+}
+
+.login-signup-text {
+  gap: 5px;
 }
