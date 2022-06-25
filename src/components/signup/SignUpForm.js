@@ -49,31 +49,32 @@ const SignUpForm = () => {
       onSubmit={handleSubmit}
       noValidate
       name="login-form"
+      autoComplete="off"
     >
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Name:</strong>
         {error.name && renderErrors(error.name)}
-        <input type="text" name="name" className='login-form-input' />
+        <input type="text" name="name" className='login-form-input' autoComplete="off"/>
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Username:</strong>
         {error.username && renderErrors(error.username)}
-        <input type="text" name="username" className='login-form-input' />
+        <input type="text" name="username" className='login-form-input' autoComplete="off"/>
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Email:</strong>
         {error.email && renderErrors(error.email)}
-        <input type="email" name="email" className='login-form-input' />
+        <input type="email" name="email" className='login-form-input' autoComplete="off"/>
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Password:</strong>
         {error.password && renderErrors(error.password)}
-        <input type="password" name="password" className='login-form-input' />
+        <input type="password" name="password" className='login-form-input' autoComplete="off"/>
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Confirm Password:</strong>
         {error.password_confirmation && renderErrors(error.password_confirmation)}
-        <input type="password" name="password_confirmation" className='login-form-input' />
+        <input type="password" name="password_confirmation" className='login-form-input' autoComplete="off"/>
       </label>
       <input className="login-form-btn click" type="submit" value="SEND" />
     </form>

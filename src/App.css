@@ -295,3 +295,7 @@ section {
 .tried input {
   border: solid 2px red;
 }
+
+.yellow {
+  color: var(--color-yellow)
+}

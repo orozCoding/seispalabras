@@ -56,7 +56,7 @@ const Home = () => {
       <>
          <p className="title bold">Seis Palabras Diarias</p>
         <p>Practice and improve your Spanish vocabulary translating six words every day!</p>
-        <p>The idea of <strong>Seis Palabras</strong> is to help you create a habit that will help you improve your Spanish.</p>
+        <p>The idea of <strong className="yellow">Seis Palabras</strong> is to help you create a habit that will help you improve your Spanish.</p>
         <p>Sample:</p>
         <p>Type a Spanish word for...</p>
         <SampleWordForm />
