@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/userSlice';
 
 const LoginForm = () => {
-
+  const user = useSelector((state) => state.user)
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -29,6 +29,8 @@ const LoginForm = () => {
       noValidate
       name="login-form"
     >
+      {user.error.login.length > 0 &&
+        <p className="form-error-text">Wrong email or password</p>}
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Email:</strong>
         <input type="email" name="email" className='login-form-input' />

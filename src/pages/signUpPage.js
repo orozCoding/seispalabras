@@ -32,8 +32,8 @@ const SignUpPage = () => {
   })
 
   return (
-    <section className="d-flex col">
-      <div>Sign Up</div>
+    <section className="login-container d-flex col">
+      <p className="title bold">Sign Up</p>
       <SignUpForm />
     </section>
   )

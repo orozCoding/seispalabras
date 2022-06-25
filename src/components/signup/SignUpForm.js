@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../redux/userSlice';
+import capitalize from '../shared/capitalize';
 
 const SignUpForm = () => {
 
@@ -35,6 +36,12 @@ const SignUpForm = () => {
     console.log(error);
   })
 
+  const renderErrors = (errors) => {
+    return errors.map((error) => (
+      <p className="form-error-text">{capitalize(error)}</p>
+    ))
+  }
+
   return (
     <form id="signup-form"
       className="login-form d-flex col"
@@ -45,27 +52,27 @@ const SignUpForm = () => {
     >
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Name:</strong>
-        {error.name? <p>Name {error.name}</p> : null}
+        {error.name && renderErrors(error.name)}
         <input type="text" name="name" className='login-form-input' />
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Username:</strong>
-        {error.username && <p>Username {error.username}</p>}
+        {error.username && renderErrors(error.username)}
         <input type="text" name="username" className='login-form-input' />
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Email:</strong>
-        {error.email && <p>Email {error.email}</p>}
+        {error.email && renderErrors(error.email)}
         <input type="email" name="email" className='login-form-input' />
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Password:</strong>
-        {error.password && <p>Password {error.password}</p>}
+        {error.password && renderErrors(error.password)}
         <input type="password" name="password" className='login-form-input' />
       </label>
       <label className="login-form-label d-flex col">
         <strong className="login-form-text">Confirm Password:</strong>
-        {error.password_confirmation && <p>It {error.password_confirmation}</p>}
+        {error.password_confirmation && renderErrors(error.password_confirmation)}
         <input type="password" name="password_confirmation" className='login-form-input' />
       </label>
       <input className="login-form-btn click" type="submit" value="SEND" />

@@ -27,8 +27,6 @@ const LoginPage = () => {
   return (
     <section className="login-container d-flex col">
       <p className="title bold">Log In</p>
-      {user.error.login.length > 0 &&
-        <p>Wrong email or password</p>}
       <LoginForm />
       <div className="login-signup-text d-flex col">
         <p>Don't have an account?</p>

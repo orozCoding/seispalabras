@@ -12,6 +12,7 @@
 :root {
   --color-yellow: #f1a71c;
   --color-white: #fff;
+  --color-error: rgb(255, 13, 13);
 }
 
 html,
@@ -242,6 +243,7 @@ button {
   align-items: center;
   font-size: 18px;
   max-width: 600px;
+  padding-bottom: 30px;
 }
 
 .login-form {
@@ -282,4 +284,9 @@ button {
 
 .login-signup-text {
   gap: 5px;
+}
+
+.form-error-text {
+  color: var(--color-error);
+  font-size: 14px;
 }
