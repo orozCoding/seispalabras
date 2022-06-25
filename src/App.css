@@ -9,6 +9,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color-yellow: #f1a71c;
+  --color-white: #fff;
+}
+
 html,
 body {
   width: 100%;
@@ -27,10 +32,7 @@ ul {
   list-style: none;
 }
 
-a,
-a:hover,
-a:visited,
-a:active {
+a {
   all: unset;
   cursor: pointer;
 }
@@ -71,11 +73,11 @@ button {
 .activeLink:hover,
 .activeLink:visited,
 .activeLink:active {
-  color: #ffffff;
+  color: var(--color-yellow)
 }
 
 .pageLink {
-  color: #b1b1b1;
+  color: #b0b0b0;
 }
 
 .pageLink:hover {
@@ -223,4 +225,8 @@ form button:hover {
 .not-found-container {
   margin-top: 15px;
   gap: 30px;
+}
+
+.text-link {
+  color: var(--color-yellow)
 }
