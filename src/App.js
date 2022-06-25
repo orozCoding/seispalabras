@@ -14,6 +14,7 @@ import SignUpPage from "./pages/signUpPage";
 import NotFound from "./pages/notFoundPage";
 import { ToastContainer } from 'react-toastify';
 import { checkSession } from "./redux/userSlice";
+import { getWordsLength } from "./redux/wordsSlice";
 
 const App = () => {
 
@@ -33,6 +34,9 @@ const App = () => {
     dispatch(checkSession());
   }, [dispatch])
 
+  useEffect(() => {
+    dispatch(getWordsLength())
+  }, [dispatch])
 
   return (
     <div className="appBody d-flex col">

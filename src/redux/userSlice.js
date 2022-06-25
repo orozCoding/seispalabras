@@ -95,8 +95,9 @@ export const userSlice = createSlice({
         state.status = 'loading'
       })
       .addCase(checkSession.fulfilled, (state,action) => {
-        if (!action.payload) {
-          return initialState
+        if (!action.payload || action.payload.error) {
+          deleteTokenCookie();
+          return initialState;
         } else {
           state.student = action.payload;
           state.logged = true;

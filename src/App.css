@@ -31,11 +31,13 @@ a,
 a:hover,
 a:visited,
 a:active {
-  text-decoration: inherit;
+  all: unset;
+  cursor: pointer;
 }
 
 button {
   all: unset;
+  cursor: pointer;
 }
 
 .d-flex {

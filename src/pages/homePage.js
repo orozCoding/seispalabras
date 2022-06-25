@@ -6,19 +6,20 @@ const Home = () => {
   const actives = useSelector((state) => state.actives)
 
   const checkFinished = () => {
-    for (let i = 0; i < actives.length; i++) {
-      if (actives[i].completed === false) {
-        return false;
+    let finished = true;
+    actives.forEach((word) => {
+      if (word.completed === false) {
+        finished = false;
       }
-    }
-    return true;
+    })
+    return finished;
   }
 
   const countUncompleted = (actives) => {
     let n = 0;
     actives.forEach((active) => {
       if (!active.completed) {
-        n = n + 1;
+        n++;
       }
     })
     return n;
@@ -34,7 +35,7 @@ const Home = () => {
         </div>
       )
     }
-    return <div> { `${countUncompleted(actives)} more to go...` } </div>
+    return <div> {`${countUncompleted(actives)} more to go...`} </div>
   }
 
   return (
