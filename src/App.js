@@ -41,7 +41,7 @@ const App = () => {
     <div className="appBody d-flex col">
       <ToastContainer />
       <Router>
-        <header className="header">
+        <header className="header d-flex">
           <NavBar />
         </header>
         <Routes>
