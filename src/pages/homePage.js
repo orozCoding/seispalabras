@@ -18,11 +18,11 @@ const Home = () => {
     return finished;
   };
 
-  const countUncompleted = (actives) => {
+  const countUncompleted = () => {
     let n = 0;
     actives.forEach((active) => {
       if (!active.completed) {
-        n += n;
+        n += 1;
       }
     });
     return n;
@@ -40,9 +40,7 @@ const Home = () => {
     }
     return (
       <div>
-        {' '}
-        {`${countUncompleted(actives)} more to go...`}
-        {' '}
+        {`${countUncompleted()} more to go...`}
       </div>
     );
   };
@@ -56,7 +54,7 @@ const Home = () => {
             <p>Type a Spanish word for:</p>
             <ActiveWords actives={actives} />
             <div>
-              {renderProgress(actives)}
+              {renderProgress()}
             </div>
           </>
         )
@@ -66,6 +64,7 @@ const Home = () => {
             <p>Practice and improve your Spanish vocabulary translating six words every day!</p>
             <p>
               The idea of
+              {' '}
               <strong className="yellow">Seis Palabras</strong>
               {' '}
               is to help you create a habit that will help you improve your Spanish.
