@@ -40,7 +40,7 @@ const SignUpForm = () => {
       method="POST"
       onSubmit={handleSubmit}
       noValidate
-      name="login-form"
+      name="signup-form"
       autoComplete="off"
     >
       <label className="login-form-label d-flex col">

@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000'
+const baseURL = 'https://seispalabras.herokuapp.com/'
 
 const fetchAllWords = async () => {
   const url = `${baseURL}/default/list`
