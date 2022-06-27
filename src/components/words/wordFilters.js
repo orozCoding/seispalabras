@@ -19,7 +19,7 @@ const filterCorrectAnswers = (answer, activeWord) => {
     if (!checkForAccentMark(answer)) {
       filtered = word.normalize('NFD').replace(/\p{Diacritic}|\s/gu, '');
     }
-    filtered = word.toLowerCase();
+    filtered = filtered.toLowerCase();
     correctAnswers.push(filtered);
   });
   return correctAnswers;

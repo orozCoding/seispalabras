@@ -17,7 +17,7 @@ const checkCompleted = async (token) => {
 const pushCompleted = (state, payload) => {
   const completed = state;
   const { active: word, token } = payload;
-  completed.push(word);
+  completed.unshift(word);
   fetchCreateTranslation(token, word);
 
   return completed;

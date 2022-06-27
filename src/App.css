@@ -137,12 +137,6 @@ button {
   gap: 10px;
 }
 
-.tried,
-.tried button,
-.tried input {
-  border: solid 2px red;
-}
-
 .word-form input {
   padding: 3px 0;
   text-align: center;
@@ -158,6 +152,12 @@ button {
   border: solid 1px #f1a71c;
   border-radius: 6px;
   font-size: 17px;
+}
+
+.word-form.tried,
+.word-form button.tried,
+.word-form input.tried {
+  border: solid 2px red;
 }
 
 .word-form button:hover {
