@@ -45,7 +45,7 @@ const checkActiveWords = async (token) => {
     return JSON.parse(serverList.list);
   }
 
-  if (!serverList){
+  if (!serverList || today !== lastDate){
     return await createActiveWords(token);
   }
 

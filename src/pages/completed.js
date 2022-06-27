@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 const Completed = () => {
   const user = useSelector((state) => state.user);
   const completed = useSelector((state) => state.completed);
+
+  let i = completed.length + 1
   
   return (
     <section className="completed-container d-flex col">
@@ -13,8 +15,8 @@ const Completed = () => {
       <>
         {completed.length > 0 && (<p>Check the words you have translated:</p>)}
       {!completed.length && (<p>After translating the first word, the completed ones will be stored here.</p>)}
-      <div className="completedWords d-flex col">{completed.map((word, i) => {
-        i += 1;
+      <div className="completedWords d-flex col">{completed.map((word) => {
+        i -= 1;
         return (
           <div key={word.id} className="d-flex col">
             <p>{i}. <span className="completedWord">{word.e.toUpperCase()}</span> in Spanish can be:</p>
