@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logOut } from "../../redux/userSlice";
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { restoreActives } from "../../redux/activesSlice";
 import { restoreCompleted } from "../../redux/completedSlice";
 
@@ -12,34 +12,69 @@ const NavBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const notify = () => toast('Signed out successfully')
-  
+  const [mobile, setMobile] = useState(false);
+  const [clicked, setClicked] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 480) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+      setClicked(false);
+    }
+    setClicked(false);
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 480) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+      setClicked(false);
+    })
+  }, [])
 
   const handleSignOut = () => {
     dispatch(logOut());
     dispatch(restoreActives());
     dispatch(restoreCompleted());
     navigate('/')
-    notify()
+    toast('Signed out successfully')
+  }
+
+  const handleBurgerClick = () => {
+    setClicked(!clicked)
   }
 
   return (
     <nav id="navBar" className="navBar">
-      <ul id="pagesList" className="d-flex bold">
+      <i class={`burger-icon bi bi-list click ${mobile ? '' : 'none'}`}
+      onClick={handleBurgerClick}></i>
+      <ul id="pagesList"
+      className={`links-container d-flex bold ${mobile ? 'mobile' : ''}
+      ${clicked ? 'show' : 'hide'}`
+      }>
         <li key={'Home'}>
-          <NavLink to="/" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>HOME</NavLink>
+          <NavLink to="/" className={({ isActive }) => isActive ? 'activeLink' : 'pageLink'}
+          onClick={handleBurgerClick}>HOME</NavLink>
         </li>
         <li key={'Completed'}>
-          <NavLink to="/Completed" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>COMPLETED</NavLink>
+          <NavLink to="/Completed" className={({ isActive }) => isActive ? 'activeLink' : 'pageLink'}
+          onClick={handleBurgerClick}>COMPLETED</NavLink>
         </li>
         <li key={'About'}>
-          <NavLink to="/About" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>ABOUT</NavLink>
+          <NavLink to="/About" className={({ isActive }) => isActive ? 'activeLink' : 'pageLink'}
+          onClick={handleBurgerClick}>ABOUT</NavLink>
         </li>
         {user.logged ? null : <li key={'Login'}>
-          <NavLink to="/Login" className={({isActive}) => isActive ? 'activeLink' : 'pageLink'}>LOGIN</NavLink>
+          <NavLink to="/Login" className={({ isActive }) => isActive ? 'activeLink' : 'pageLink'}
+          onClick={handleBurgerClick}>LOGIN</NavLink>
         </li>}
         {user.logged && <li>
-          <button type="button" onClick={handleSignOut} className="pageLink click">SIGN OUT</button>
+          <button type="button" onClick={() => {
+            handleSignOut();
+            handleBurgerClick();}} className="pageLink click"
+          >SIGN OUT</button>
         </li>}
       </ul>
     </nav>

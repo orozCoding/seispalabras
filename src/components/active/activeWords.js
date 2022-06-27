@@ -8,7 +8,7 @@ const ActiveWords = () => {
   return (
     <>
       {user.logged && actives.length > 0 &&
-      <div className="form-container d-flex col">{actives.map((active) => {
+      <div className="active-form-container d-flex">{actives.map((active) => {
         return (
           <WordForm key={active.id} active={active} />
         )

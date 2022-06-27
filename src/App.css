@@ -95,7 +95,7 @@ button {
 .home-container {
   margin-top: 15px;
   gap: 25px;
-  max-width: 600px;
+  max-width: 900px;
 }
 
 .title {
@@ -103,7 +103,8 @@ button {
   color: #f1a71c;
 }
 
-.form-container {
+.active-form-container {
+  flex-wrap: wrap;
   gap: 30px;
 }
 
@@ -287,7 +288,7 @@ button {
 }
 
 section {
-  padding-bottom: 30px;
+  padding: 0 5px 30px 5px;
 }
 
 .tried,
@@ -298,4 +299,57 @@ section {
 
 .yellow {
   color: var(--color-yellow)
+}
+
+.none {
+  display: none;
+}
+
+/* navbar mobile */
+
+.burger-icon {
+  position: fixed;
+  font-size: 30px;
+  right: 12px;
+  top: 7px;
+  background-color: #383185;
+  color: var(--color-yellow);
+  z-index: 0;
+}
+
+.links-container.mobile {
+  position: absolute;
+  color: black;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  background-color: white;
+  z-index: 0;
+  transition: right ease 0.2s;
+}
+
+.links-container.mobile.hide {
+  right: -500px;
+}
+
+.links-container.mobile.show {
+  right: 0px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 480px) {
+  section {
+    padding-top: 25px;
+  }
+
+  .pageLink {
+    color: black;
+  }
+
+  .pageLink:hover {
+    color: darkgray;
+  }
 }
