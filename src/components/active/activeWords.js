@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import WordForm from "./wordForm";
+import { useSelector } from 'react-redux';
+import WordForm from './wordForm';
 
 const ActiveWords = () => {
   const actives = useSelector((state) => state.actives);
@@ -7,18 +7,19 @@ const ActiveWords = () => {
 
   return (
     <>
-      {user.logged && actives.length > 0 &&
-      <div className="active-form-container d-flex">{actives.map((active) => {
-        return (
+      {user.logged && actives.length > 0
+      && (
+      <div className="active-form-container d-flex">
+        {actives.map((active) => (
           <WordForm key={active.id} active={active} />
-        )
-      })}
-      </div>}
-      {!user.logged &&
-      <div>Please log in</div>}
-      
+        ))}
+      </div>
+      )}
+      {!user.logged
+      && <div>Please log in</div>}
+
     </>
-  )
+  );
 };
 
 export default ActiveWords;

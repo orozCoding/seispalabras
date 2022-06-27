@@ -27,6 +27,7 @@ body {
 body {
   overflow: scroll;
   color: #fff;
+  overflow-x: hidden;
 }
 
 ul {
@@ -78,7 +79,7 @@ button {
 .activeLink:hover,
 .activeLink:visited,
 .activeLink:active {
-  color: var(--color-yellow)
+  color: var(--color-yellow);
 }
 
 .pageLink {
@@ -94,7 +95,7 @@ button {
   padding: 10px 0;
 }
 
-/* Home */ 
+/* Home */
 
 .home-container {
   margin-top: 15px;
@@ -117,7 +118,7 @@ button {
   padding: 20px;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.65);
+  box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.65);
   color: #000;
   width: 230px;
   height: 150px;
@@ -134,6 +135,12 @@ button {
 
 .form-input-container {
   gap: 10px;
+}
+
+.tried,
+.tried button,
+.tried input {
+  border: solid 2px red;
 }
 
 .word-form input {
@@ -154,14 +161,14 @@ button {
 }
 
 .word-form button:hover {
-  background-color:#ffdea0;
+  background-color: #ffdea0;
 }
 
 .correctText {
   color: rgb(13, 175, 35);
 }
 
-/* Completed */ 
+/* Completed */
 
 .completed-container {
   margin-top: 15px;
@@ -231,9 +238,8 @@ button {
 }
 
 .text-link {
-  color: var(--color-yellow)
+  color: var(--color-yellow);
 }
-
 
 /* login page */
 
@@ -251,7 +257,7 @@ button {
   padding: 20px;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.65);
+  box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.65);
   color: #000;
   width: 100%;
   max-width: 350px;
@@ -279,7 +285,7 @@ button {
 }
 
 .login-form input.login-form-btn:hover {
-  background-color:#ffdea0;
+  background-color: #ffdea0;
 }
 
 .login-signup-text {
@@ -295,14 +301,8 @@ section {
   padding: 0 5px 30px 5px;
 }
 
-.tried,
-.tried button,
-.tried input {
-  border: solid 2px red;
-}
-
 .yellow {
-  color: var(--color-yellow)
+  color: var(--color-yellow);
 }
 
 .none {
@@ -319,7 +319,7 @@ section {
   background-color: #383185;
   color: var(--color-yellow);
   z-index: 0;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
   width: 60px;
   text-align: left;
   padding: 0 5px;
@@ -342,21 +342,13 @@ section {
 }
 
 .links-container.mobile.show {
-  right: 0px;
-}
-
-body {
-  overflow-x: hidden;
+  right: 0;
 }
 
 @media screen and (max-width: 480px) {
   .header {
     justify-content: end;
   }
-  
-  /* section {
-    padding-top: 25px;
-  } */
 
   .pageLink {
     color: black;

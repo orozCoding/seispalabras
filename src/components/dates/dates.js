@@ -1,12 +1,10 @@
 const today = new Date();
 
-const getLastVisit = () => {
-  return new Date(JSON.parse(localStorage.getItem('lastCheck')));
-}
+const getLastVisit = () => new Date(JSON.parse(localStorage.getItem('lastCheck')));
 
 const storageDate = () => {
   localStorage.setItem('lastCheck', JSON.stringify(today));
-}
+};
 
 const checkSameDay = () => {
   if (today === getLastVisit()) {
@@ -16,10 +14,10 @@ const checkSameDay = () => {
 };
 
 const checkNewDay = () => {
-  if(!getLastVisit()){
+  if (!getLastVisit()) {
     return true;
   }
-  
+
   if (today.getDate() !== getLastVisit().getDate()) {
     return true;
   }
@@ -30,11 +28,11 @@ const storageNewDay = () => {
   if (!getLastVisit() || checkNewDay()) {
     storageDate();
   }
-}
+};
 
 export {
   storageDate,
   checkSameDay,
   checkNewDay,
-  storageNewDay
+  storageNewDay,
 };

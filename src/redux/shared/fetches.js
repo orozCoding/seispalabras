@@ -1,157 +1,158 @@
-const baseURL = 'https://seispalabras.herokuapp.com/'
+const baseURL = 'https://seispalabras.herokuapp.com/';
 
 const fetchAllWords = async () => {
-  const url = `${baseURL}/default/list`
+  const url = `${baseURL}/default/list`;
 
   const resp = await fetch(url, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   })
     .then((resp) => resp.json())
-    .then((data) => data)
+    .then((data) => data);
 
-  return resp
-}
+  return resp;
+};
 
 const fetchLogin = async (input) => {
-  const url = `${baseURL}/auth/login`
+  const url = `${baseURL}/auth/login`;
 
   const resp = await fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(input),
   })
     .then((resp) => resp.json())
-    .then((data) => data)
+    .then((data) => data);
 
-  return resp
-}
+  return resp;
+};
 
 const fetchSession = async (token) => {
-  const url = `${baseURL}/session`
+  const url = `${baseURL}/session`;
 
   const resp = await fetch(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`
-    }
+      Authorization: `${token}`,
+    },
   })
     .then((resp) => resp.json())
-    .then((data) => data)
+    .then((data) => data);
 
-  return resp
-}
+  return resp;
+};
 
 const fetchSignup = async (input) => {
-  const url = `${baseURL}/users`
+  const url = `${baseURL}/users`;
 
   const resp = await fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(input),
   })
     .then((resp) => resp.json())
-    .then((data) => data)
+    .then((data) => data);
 
-  return resp
-}
+  return resp;
+};
 
 const fetchWordList = async (token) => {
-  const url = `${baseURL}/words_lists/`
+  const url = `${baseURL}/words_lists/`;
 
-  const resp = await fetch(url,{
+  const resp = await fetch(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`
-    }
+      Authorization: `${token}`,
+    },
   })
     .then((resp) => resp.json())
     .then((data) => data);
 
-  if(!resp) {
+  if (!resp) {
     return false;
   }
-  return resp
-}
+  return resp;
+};
 
 const fetchCreateWordList = async (token, input) => {
-  const url = `${baseURL}/words_lists/`
+  const url = `${baseURL}/words_lists/`;
 
-  const wordList = { list: JSON.stringify(input)}
+  const wordList = { list: JSON.stringify(input) };
 
-  const resp = await fetch(url,{
+  const resp = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`
+      Authorization: `${token}`,
     },
-    body: JSON.stringify(wordList)
+    body: JSON.stringify(wordList),
   })
     .then((resp) => resp.json())
     .then((data) => data);
 
-  
-  return resp
-}
+  return resp;
+};
 
 const fetchTranslations = async (token) => {
-  const url = `${baseURL}/translations`
+  const url = `${baseURL}/translations`;
 
-  const resp = await fetch(url,{
+  const resp = await fetch(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`
-    }
+      Authorization: `${token}`,
+    },
   })
     .then((resp) => resp.json())
     .then((data) => data);
 
-  return [...resp]
-}
+  return [...resp];
+};
 
 const fetchCreateTranslation = async (token, word) => {
-  const url = `${baseURL}/translations`
-  
+  const url = `${baseURL}/translations`;
+
   const input = {
     word: word.e,
-    word_id: word.id
-  }
+    word_id: word.id,
+  };
 
-  const resp = await fetch(url,{
+  const resp = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`
+      Authorization: `${token}`,
     },
-    body: JSON.stringify(input)
+    body: JSON.stringify(input),
   })
     .then((resp) => resp.json())
     .then((data) => data);
 
-  return resp
-}
+  return resp;
+};
 
 const filterCompleted = async (translations) => {
-  let res = []; 
-  let words = await fetchAllWords();
+  const res = [];
+  const words = await fetchAllWords();
 
   translations.forEach((word) => {
-    word = words.filter((el) => el.id === word.word_id)
-    res.push(word[0])
-  })
+    const realWord = words.filter((el) => el.id === word.word_id);
+    res.push(realWord[0]);
+  });
 
-  return res
-}
+  return res;
+};
 
-export { fetchAllWords, fetchLogin, fetchSignup, fetchSession,
+export {
+  fetchAllWords, fetchLogin, fetchSignup, fetchSession,
   fetchWordList, fetchCreateWordList, fetchTranslations,
-  fetchCreateTranslation,filterCompleted };
+  fetchCreateTranslation, filterCompleted,
+};

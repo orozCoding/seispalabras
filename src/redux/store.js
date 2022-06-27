@@ -1,17 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import activesReducer from './activesSlice';
 import completedReducer from './completedSlice';
-import userReducer from './userSlice'
-import wordsReducer from './wordsSlice'
+import userReducer from './userSlice';
+import wordsReducer from './wordsSlice';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     completed: completedReducer,
     actives: activesReducer,
     user: userReducer,
-    words: wordsReducer
+    words: wordsReducer,
   },
 });
-
 
 export default store;

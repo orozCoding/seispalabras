@@ -1,13 +1,14 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable consistent-return */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setTokenCookie, getTokenCookie, deleteTokenCookie } from './shared/cookies';
 import { fetchSignup, fetchLogin, fetchSession } from './shared/fetches';
-
 
 const initialState = {
   logged: false,
   registered: false,
   status: 'idle',
-  error: {login: [], signup: []},
+  error: { login: [], signup: [] },
   student: null,
 };
 
@@ -17,7 +18,7 @@ export const signup = createAsyncThunk(
     const response = await fetchSignup(input);
     // The value we return becomes the `fulfilled` action payload
     return response;
-  }
+  },
 );
 
 export const login = createAsyncThunk(
@@ -26,11 +27,11 @@ export const login = createAsyncThunk(
     const response = await fetchLogin(input);
     // The value we return becomes the `fulfilled` action payload
     if (response.token) {
-      const date = new Date(response.exp)
-      setTokenCookie(response.token, date)
+      const date = new Date(response.exp);
+      setTokenCookie(response.token, date);
     }
     return response;
-  }
+  },
 );
 
 export const checkSession = createAsyncThunk(
@@ -40,10 +41,10 @@ export const checkSession = createAsyncThunk(
 
     if (token) {
       const response = await fetchSession(token);
-      return { ...response , token: token};
+      return { ...response, token };
     }
-    return null
-  }
+    return null;
+  },
 );
 
 export const userSlice = createSlice({
@@ -52,31 +53,31 @@ export const userSlice = createSlice({
   reducers: {
     logOut: () => {
       deleteTokenCookie();
-      return initialState
+      return initialState;
     },
     cleanErrors: (state) => {
-      state.error = {login: [], signup: []}
+      state.error = { login: [], signup: [] };
     },
     cleanRegistered: (state) => {
       state.registered = false;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(signup.pending, (state) => {
-        state.status = 'loading'
+        state.status = 'loading';
       })
       .addCase(signup.fulfilled, (state, action) => {
-        if(!action.payload.id) {
-          state.error.signup = action.payload
-        } else if (action.payload.id){
+        if (!action.payload.id) {
+          state.error.signup = action.payload;
+        } else if (action.payload.id) {
           state.registered = true;
-          state.error.signup = []
+          state.error.signup = [];
         }
-        state.status = 'idle'
+        state.status = 'idle';
       })
       .addCase(login.pending, (state) => {
-        state.status = 'loading'
+        state.status = 'loading';
       })
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload.error) {
@@ -91,24 +92,25 @@ export const userSlice = createSlice({
         state.status = 'idle';
       })
       .addCase(checkSession.pending, (state) => {
-        state.status = 'loading'
+        state.status = 'loading';
       })
-      .addCase(checkSession.fulfilled, (state,action) => {
+      .addCase(checkSession.fulfilled, (state, action) => {
         if (!action.payload || action.payload.error) {
           deleteTokenCookie();
           return initialState;
-        } else {
-          state.student = action.payload;
-          state.logged = true;
-          state.error = null;
         }
-        state.status = 'idle'
-      })
-  }
-})
+        state.student = action.payload;
+        state.logged = true;
+        state.error = null;
 
-export const { getCompleted, addCompleted,
-  logOut, cleanErrors, cleanRegistered } = userSlice.actions;
+        state.status = 'idle';
+      });
+  },
+});
 
+export const {
+  getCompleted, addCompleted,
+  logOut, cleanErrors, cleanRegistered,
+} = userSlice.actions;
 
 export default userSlice.reducer;

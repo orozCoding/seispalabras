@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const setTokenCookie = (token, date) => {
   document.cookie = `user_token=${token}; expires=${date.toUTCString()}; path=/`;
 };
@@ -9,7 +10,7 @@ const deleteTokenCookie = () => {
 const getTokenCookie = () => {
   if (!document.cookie.includes('user_token')) return null;
   const value = `; ${document.cookie}`;
-  const parts = value.split(`; user_token=`);
+  const parts = value.split('; user_token=');
   if (parts.length === 2) return parts.pop().split(';').shift();
 };
 
