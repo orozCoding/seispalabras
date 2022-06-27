@@ -7,8 +7,6 @@ const SignUpForm = () => {
 
   const error = useSelector((state) => state.user.error.signup)
 
-  console.log(error);
-
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -25,16 +23,10 @@ const SignUpForm = () => {
     }
     }
 
-    console.log(input);
-
     dispatch(signup(input))
     return true
     
   }
-
-  useEffect(() => {
-    console.log(error);
-  })
 
   const renderErrors = (errors) => {
     return errors.map((error) => (

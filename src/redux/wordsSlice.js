@@ -6,7 +6,6 @@ export const getWordsLength = createAsyncThunk(
   async () => {
     const response = await fetchAllWords();
     // The value we return becomes the `fulfilled` action payload
-    console.log(response);
     return response.length;
   }
 );

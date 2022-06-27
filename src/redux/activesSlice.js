@@ -16,14 +16,12 @@ const filterArrays = (arr1, arr2) => {
 }
 
 const createActiveWords = async (token) => {
-  console.log('doing');
   let words = await fetchAllWords();
   let possibles = [];
   let activeWords = [];
   // let completed = JSON.parse(localStorage.getItem('completed'));
   let completed = await fetchTranslations(token);
   if (completed.length > 0) {
-    console.log('op1');
     completed = filterCompleted(completed)
     possibles = filterArrays(words, completed);
     possibles.sort(() => 0.5 - Math.random());
@@ -31,7 +29,6 @@ const createActiveWords = async (token) => {
     fetchCreateWordList(token, activeWords);
     return activeWords;
   } 
-  console.log('op2');
   possibles = [...words]
   possibles.sort(() => 0.5 - Math.random());
   activeWords = possibles.splice(0, 6);

@@ -16,7 +16,6 @@ const LoginForm = () => {
       "remember": form.remember.checked
     }
 
-    // console.log(input)
     dispatch(login(input))
     return true
   }

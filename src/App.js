@@ -24,7 +24,6 @@ const App = () => {
 
   useEffect(() => {
     if (user.logged) {
-      console.log(user.student.token);
       dispatch(getActiveWords(user.student.token));
       dispatch(getCompleted(user.student.token));
     }

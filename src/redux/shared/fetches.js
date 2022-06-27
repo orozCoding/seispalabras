@@ -49,7 +49,6 @@ const fetchSession = async (token) => {
 
 const fetchSignup = async (input) => {
   const url = `${baseURL}/users`
-  console.log(JSON.stringify(input));
 
   const resp = await fetch(url, {
     method: 'POST',

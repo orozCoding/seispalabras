@@ -16,7 +16,6 @@ export const signup = createAsyncThunk(
   async (input) => {
     const response = await fetchSignup(input);
     // The value we return becomes the `fulfilled` action payload
-    console.log(response);
     return response;
   }
 );

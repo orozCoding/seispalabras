@@ -48,7 +48,7 @@ const NavBar = () => {
 
   return (
     <nav id="navBar" className="navBar">
-      <i class={`burger-icon bi bi-list click ${mobile ? '' : 'none'}`}
+      <i className={`burger-icon bi bi-list click ${mobile ? '' : 'none'}`}
       onClick={handleBurgerClick}></i>
       <ul id="pagesList"
       className={`links-container d-flex bold ${mobile ? 'mobile' : ''}
