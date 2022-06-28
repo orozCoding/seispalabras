@@ -291,6 +291,7 @@ button {
   border: solid 1px #f1a71c;
   border-radius: 6px;
   font-size: 17px;
+  color: black;
 }
 
 .login-form input.login-form-btn:hover {
