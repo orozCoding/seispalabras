@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -19,6 +21,7 @@ import { getSound } from './redux/soundSlice';
 
 const App = () => {
   const user = useSelector((state) => state.user);
+  // const sound = useSelector((state) => state.sound);
 
   const dispatch = useDispatch();
 
@@ -41,6 +44,14 @@ const App = () => {
     dispatch(getSound());
   }, [dispatch]);
 
+  // const handleSound = () => {
+  //   if (sound) {
+  //     dispatch(volumeOFF());
+  //   } else {
+  //     dispatch(volumeON());
+  //   }
+  // };
+
   return (
     <div className="appBody d-flex col">
       <ToastContainer />
@@ -57,7 +68,6 @@ const App = () => {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
-      <footer className="footer">Mute sound</footer>
     </div>
   );
 };

@@ -1,12 +1,18 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ActiveWords from '../components/active/activeWords';
 import SampleWordForm from '../components/active/sampleWordForm';
+import { volumeOFF, volumeON } from '../redux/soundSlice';
 
 const Home = () => {
   const actives = useSelector((state) => state.actives);
   const user = useSelector((state) => state.user);
+  const sound = useSelector((state) => state.sound);
+
+  const dispatch = useDispatch();
 
   const checkFinished = () => {
     let finished = true;
@@ -43,6 +49,14 @@ const Home = () => {
         {`${countUncompleted()} more to go...`}
       </div>
     );
+  };
+
+  const handleSound = () => {
+    if (sound) {
+      dispatch(volumeOFF());
+    } else {
+      dispatch(volumeON());
+    }
   };
 
   return (
@@ -84,6 +98,9 @@ const Home = () => {
             </div>
           </>
         )}
+      <p className="mute-sound-text click" onClick={handleSound}>
+        {sound ? 'Mute Sound' : 'Activate Sound'}
+      </p>
 
     </section>
   );

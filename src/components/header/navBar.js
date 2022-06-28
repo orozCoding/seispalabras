@@ -19,7 +19,7 @@ const NavBar = () => {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 480) {
+    if (window.innerWidth <= 600) {
       setMobile(true);
     } else {
       setMobile(false);
@@ -28,7 +28,7 @@ const NavBar = () => {
     setClicked(false);
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 480) {
+      if (window.innerWidth <= 600) {
         setMobile(true);
       } else {
         setMobile(false);
@@ -59,12 +59,16 @@ const NavBar = () => {
 
   return (
     <nav id="navBar" className="navBar d-flex">
-      {sound ? <i className="bi bi-volume-up volume-icon" onClick={handleSound} />
-        : <i className="bi bi-volume-mute volume-icon" onClick={handleSound} /> }
-      <i
-        className={`burger-icon bi bi-list click ${mobile ? '' : 'none'}`}
-        onClick={handleBurgerClick}
-      />
+      <div>
+        {sound ? <i className="bi bi-volume-up volume-icon" onClick={handleSound} />
+          : <i className="bi bi-volume-mute volume-icon" onClick={handleSound} />}
+      </div>
+      <div>
+        <i
+          className={`burger-icon bi bi-list click ${mobile ? '' : 'none'}`}
+          onClick={handleBurgerClick}
+        />
+      </div>
       <ul
         id="pagesList"
         className={`links-container d-flex bold ${mobile ? 'mobile' : ''}

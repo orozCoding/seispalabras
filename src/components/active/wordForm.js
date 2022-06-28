@@ -20,7 +20,7 @@ const WordForm = (props) => {
 
   const [playWrong] = useSound(
     'wrong.mp3',
-    { volume: 1 },
+    { volume: 0.5 },
   );
 
   const checkAnswer = (answer) => {

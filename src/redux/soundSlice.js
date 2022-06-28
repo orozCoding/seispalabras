@@ -5,7 +5,6 @@ const initialState = true;
 
 const checkSound = () => {
   if (localStorage.getItem('sp_sound')) {
-    console.log('si hay sound');
     return JSON.parse(localStorage.getItem('sp_sound'));
   }
   return true;

@@ -22,13 +22,21 @@ body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #383185;
   font-size: 20px;
-  padding: 0 5px 30px 5px;
+  padding-bottom: 25px;
+}
+
+html {
+  position: absolute;
 }
 
 body {
   overflow: scroll;
   color: #fff;
   overflow-x: hidden;
+}
+
+section {
+  padding: 0 10px;
 }
 
 ul {
@@ -298,10 +306,6 @@ button {
   font-size: 14px;
 }
 
-/* section {
-  padding: 0 5px 30px 5px;
-} */
-
 .yellow {
   color: var(--color-yellow);
 }
@@ -312,18 +316,34 @@ button {
 
 /* navbar mobile */
 
+.navBar {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
 .burger-icon {
-  /* position: fixed; */
+  position: relative;
   font-size: 30px;
-  right: -15px;
-  top: 7px;
   background-color: #383185;
   color: var(--color-yellow);
   z-index: 0;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-  width: 60px;
   text-align: left;
-  padding: 0 5px;
+  overflow-x: hidden;
+  width: 15%;
+  flex-grow: 1;
+}
+
+/* volume icon */
+
+.volume-icon {
+  position: relative;
+  margin: auto;
+  font-size: 25px;
+  cursor: pointer;
+  justify-self: flex-start;
+  width: 15%;
+  flex-grow: 1;
 }
 
 .links-container.mobile {
@@ -339,26 +359,38 @@ button {
 }
 
 .links-container.mobile.hide {
-  right: -500px;
+  right: -600px;
 }
 
 .links-container.mobile.show {
   right: 0;
 }
 
-/* volume icon */
-
-.volume-icon {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  font-size: 25px;
-  cursor: pointer;
+.footer {
+  padding: 20px 0;
 }
 
-@media screen and (max-width: 480px) {
+.mute-sound-text {
+  font-size: 15px;
+  color: var(--color-yellow);
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
   .header {
-    justify-content: end;
+    justify-content: space-between;
+    min-height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 1px 15px;
+    padding: 5px 20px;
+  }
+
+  section {
+    padding-top: 10px;
+  }
+
+  .navBar {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .pageLink {
@@ -367,5 +399,18 @@ button {
 
   .pageLink:hover {
     color: darkgray;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .volume-icon {
+    position: fixed;
+    align-self: flex-start;
+    top: 10px;
+    left: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    justify-self: flex-start;
+    flex-grow: 1;
   }
 }
