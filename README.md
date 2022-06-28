@@ -16,6 +16,7 @@ User is also able to check the translated words and track their progress.
 
 - HTML, CSS and JavaScript
 - React and Redux
+- Ruby on Rails
 
 ## Authors
 
