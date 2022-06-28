@@ -4,6 +4,11 @@ Seis Palabras is a web app for Spanish students in which they can try to transla
 
 User is also able to check the translated words and track their progress.
 
+
+This is the Front-end repository built with React.js.
+
+[Visit the Back-end repository.](https://github.com/orozCoding/seispalabras-back-end)
+
 ## Preview
 
 ![Preview1](./public/seispalabraspreview.gif)
