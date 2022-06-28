@@ -7,9 +7,11 @@ import { toast } from 'react-toastify';
 import { logOut } from '../../redux/userSlice';
 import { restoreActives } from '../../redux/activesSlice';
 import { restoreCompleted } from '../../redux/completedSlice';
+import { volumeOFF, volumeON } from '../../redux/soundSlice';
 
 const NavBar = () => {
   const user = useSelector((state) => state.user);
+  const sound = useSelector((state) => state.sound);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -47,8 +49,18 @@ const NavBar = () => {
     setClicked(!clicked);
   };
 
+  const handleSound = () => {
+    if (sound) {
+      dispatch(volumeOFF());
+    } else {
+      dispatch(volumeON());
+    }
+  };
+
   return (
     <nav id="navBar" className="navBar">
+      {sound ? <i className="bi bi-volume-up" onClick={handleSound}></i>
+      : <i className="bi bi-volume-mute" onClick={handleSound}></i> }
       <i
         className={`burger-icon bi bi-list click ${mobile ? '' : 'none'}`}
         onClick={handleBurgerClick}
@@ -97,18 +109,18 @@ const NavBar = () => {
           </li>
         )}
         {user.logged && (
-        <li>
-          <button
-            type="button"
-            onClick={() => {
-              handleSignOut();
-              handleBurgerClick();
-            }}
-            className="pageLink click"
-          >
-            SIGN OUT
-          </button>
-        </li>
+          <li>
+            <button
+              type="button"
+              onClick={() => {
+                handleSignOut();
+                handleBurgerClick();
+              }}
+              className="pageLink click"
+            >
+              SIGN OUT
+            </button>
+          </li>
         )}
       </ul>
     </nav>

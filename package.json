@@ -16,7 +16,8 @@
     "react-toastify": "^9.0.5",
     "redux-logger": "^3.0.6",
     "screenfull": "^6.0.1",
-    "screenfull-react": "^0.0.4"
+    "screenfull-react": "^0.0.4",
+    "use-sound": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

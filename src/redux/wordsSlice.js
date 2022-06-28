@@ -14,7 +14,7 @@ export const getWordsLength = createAsyncThunk(
 const initialState = { length: 5 };
 
 export const wordsSlice = createSlice({
-  name: 'completed',
+  name: 'words',
   initialState,
   reducers: {
   },

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import useSound from 'use-sound';
 import { filterGuess, filterCorrectAnswers } from '../words/wordFilters';
 
 const SampleWordForm = () => {
+  const sound = useSelector((state) => state.sound)
+
   const sample = {
     id: 143,
     e: 'love',
@@ -12,14 +16,30 @@ const SampleWordForm = () => {
 
   const [active, setActive] = useState(sample);
 
+  const [playCorrect] = useSound(
+    'correct.wav',
+    { volume: 1 },
+  );
+
+  const [playWrong] = useSound(
+    'wrong.mp3',
+    { volume: 1 },
+  );
+
   const checkAnswer = (input) => {
     const answer = filterGuess(input);
     const correctAnswers = filterCorrectAnswers(answer, active);
     if (correctAnswers.includes(answer)) {
       setActive({ ...sample, completed: true });
+      if (sound) {
+        playCorrect();
+      }
       return true;
     }
     setActive({ ...sample, tried: true });
+    if (sound) {
+      playWrong();
+    }
     return false;
   };
 
