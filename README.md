@@ -10,7 +10,7 @@ User is also able to check the translated words and track their progress.
 
 ## Live Demo
 
-[LIVE DEMO](https://trespalabras.netlify.app/)
+[seispalabras.xyz](https://seispalabras.xyz/)
 
 ## Built With
 
