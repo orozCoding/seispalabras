@@ -6,7 +6,7 @@ User is also able to check the translated words and track their progress.
 
 ## Preview
 
-![Preview1](./public/trespalabras.gif)
+![Preview1](./public/seispalabraspreview.gif)
 
 ## Live Demo
 
