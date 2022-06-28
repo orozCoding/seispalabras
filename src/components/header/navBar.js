@@ -58,9 +58,9 @@ const NavBar = () => {
   };
 
   return (
-    <nav id="navBar" className="navBar">
-      {sound ? <i className="bi bi-volume-up" onClick={handleSound}></i>
-      : <i className="bi bi-volume-mute" onClick={handleSound}></i> }
+    <nav id="navBar" className="navBar d-flex">
+      {sound ? <i className="bi bi-volume-up volume-icon" onClick={handleSound} />
+        : <i className="bi bi-volume-mute volume-icon" onClick={handleSound} /> }
       <i
         className={`burger-icon bi bi-list click ${mobile ? '' : 'none'}`}
         onClick={handleBurgerClick}

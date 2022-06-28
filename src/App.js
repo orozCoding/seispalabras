@@ -15,6 +15,7 @@ import SignUpPage from './pages/signUpPage';
 import NotFound from './pages/notFoundPage';
 import { checkSession } from './redux/userSlice';
 import { getWordsLength } from './redux/wordsSlice';
+import { getSound } from './redux/soundSlice';
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -36,6 +37,10 @@ const App = () => {
     dispatch(getWordsLength());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getSound());
+  }, [dispatch]);
+
   return (
     <div className="appBody d-flex col">
       <ToastContainer />
@@ -52,6 +57,7 @@ const App = () => {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
+      <footer className="footer">Mute sound</footer>
     </div>
   );
 };

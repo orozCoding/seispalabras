@@ -4,7 +4,7 @@ import useSound from 'use-sound';
 import { filterGuess, filterCorrectAnswers } from '../words/wordFilters';
 
 const SampleWordForm = () => {
-  const sound = useSelector((state) => state.sound)
+  const sound = useSelector((state) => state.sound);
 
   const sample = {
     id: 143,

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import useSound from 'use-sound';
 import { filterGuess, filterCorrectAnswers } from '../words/wordFilters';
 import { addCompleted } from '../../redux/completedSlice';
 import { completeActiveWord, wrongGuess } from '../../redux/activesSlice';
@@ -8,8 +9,19 @@ import { completeActiveWord, wrongGuess } from '../../redux/activesSlice';
 const WordForm = (props) => {
   const { active } = props;
   const token = useSelector((state) => state.user.student.token);
+  const sound = useSelector((state) => state.sound);
 
   const dispatch = useDispatch();
+
+  const [playCorrect] = useSound(
+    'correct.wav',
+    { volume: 1 },
+  );
+
+  const [playWrong] = useSound(
+    'wrong.mp3',
+    { volume: 1 },
+  );
 
   const checkAnswer = (answer) => {
     const filteredAnswer = filterGuess(answer);
@@ -17,9 +29,15 @@ const WordForm = (props) => {
     if (correctAnswers.includes(filteredAnswer)) {
       dispatch(completeActiveWord({ active, token }));
       dispatch(addCompleted({ active, token }));
+      if (sound) {
+        playCorrect();
+      }
       return true;
     }
     dispatch(wrongGuess(active));
+    if (sound) {
+      playWrong();
+    }
     return false;
   };
 

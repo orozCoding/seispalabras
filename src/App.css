@@ -22,6 +22,7 @@ body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #383185;
   font-size: 20px;
+  padding: 0 5px 30px 5px;
 }
 
 body {
@@ -297,9 +298,9 @@ button {
   font-size: 14px;
 }
 
-section {
+/* section {
   padding: 0 5px 30px 5px;
-}
+} */
 
 .yellow {
   color: var(--color-yellow);
@@ -343,6 +344,16 @@ section {
 
 .links-container.mobile.show {
   right: 0;
+}
+
+/* volume icon */
+
+.volume-icon {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 25px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
