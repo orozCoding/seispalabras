@@ -21,7 +21,6 @@ import { getSound } from './redux/soundSlice';
 
 const App = () => {
   const user = useSelector((state) => state.user);
-  // const sound = useSelector((state) => state.sound);
 
   const dispatch = useDispatch();
 
@@ -43,14 +42,6 @@ const App = () => {
   useEffect(() => {
     dispatch(getSound());
   }, [dispatch]);
-
-  // const handleSound = () => {
-  //   if (sound) {
-  //     dispatch(volumeOFF());
-  //   } else {
-  //     dispatch(volumeON());
-  //   }
-  // };
 
   return (
     <div className="appBody d-flex col">

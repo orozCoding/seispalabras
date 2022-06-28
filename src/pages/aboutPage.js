@@ -60,7 +60,7 @@ const About = () => {
       <p className="finalMsg small">
         Version:
         {' '}
-        <span className="possibleWord">beta 0.4.1</span>
+        <span className="possibleWord">beta 1.0</span>
         .
       </p>
     </div>
