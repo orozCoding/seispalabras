@@ -60,7 +60,7 @@ const Completed = () => {
               {' '}
               or
               {' '}
-              <NavLink to="/signup" className="myLink">Sing Up</NavLink>
+              <NavLink to="/signup" className="myLink">Sign Up</NavLink>
               {' '}
               to
               start tracking all the words you translate.
