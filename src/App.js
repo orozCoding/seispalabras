@@ -2,7 +2,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Routes, Route, Navigate,
+} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { getCompleted } from './redux/completedSlice';
 import { getActiveWords } from './redux/activesSlice';
@@ -54,8 +56,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/Completed" element={<Completed />} />
           <Route path="/About" element={<About />} />
-          <Route path="/Login" element={<LoginPage />} />
-          <Route path="/Signup" element={<SignUpPage />} />
+          <Route path="/Login" element={user.logged ? <LoginPage /> : <Navigate to="/" />} />
+          <Route path="/Signup" element={user.logged ? <SignUpPage /> : <Navigate to="/" />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
