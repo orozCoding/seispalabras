@@ -8,8 +8,8 @@ import {
 
 const filterArrays = (arr1, arr2) => {
   const arr = [...arr1];
-  for (let i = 0; i < arr1.length; i += i) {
-    for (let x = 0; x < arr2.length; x += x) {
+  for (let i = 0; i < arr1.length; i += 1) {
+    for (let x = 0; x < arr2.length; x += 1) {
       if (arr1[i].id === arr2[x].id) {
         arr.splice(arr.indexOf(arr1[i]), 1);
       }
@@ -22,10 +22,10 @@ const createActiveWords = async (token) => {
   const words = await fetchAllWords();
   let possibles = [];
   let activeWords = [];
-  // let completed = JSON.parse(localStorage.getItem('completed'));
-  let completed = await fetchTranslations(token);
+  let completed = [];
+  completed = await fetchTranslations(token);
   if (completed.length > 0) {
-    completed = filterCompleted(completed);
+    completed = await filterCompleted(completed);
     possibles = filterArrays(words, completed);
     possibles.sort(() => 0.5 - Math.random());
     activeWords = possibles.splice(0, 6);
@@ -44,7 +44,7 @@ const checkActiveWords = async (token) => {
   const today = new Date().getDate();
   const lastDate = new Date(serverList.updated_at).getDate();
 
-  if (serverList && today === lastDate) {
+  if (today === lastDate) {
     return JSON.parse(serverList.list);
   }
 
