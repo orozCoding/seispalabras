@@ -2,7 +2,7 @@
 
 Seis Palabras is a web app for Spanish students in which they can try to translate 6 words every day.
 
-The user is also able to creat an account and check the translated words and track their progress across platforms.
+The user is also able to create an account and check the translated words and track their progress across platforms.
 
 
 This is the Front-end repository built with React.js.
