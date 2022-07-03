@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import WordForm from './wordForm';
 
 const ActiveWords = () => {
-  const actives = useSelector((state) => state.actives);
+  const actives = useSelector((state) => state.actives.list);
   const user = useSelector((state) => state.user);
 
   return (

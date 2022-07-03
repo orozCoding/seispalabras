@@ -100,26 +100,30 @@ export const getActiveWords = createAsyncThunk(
   },
 );
 
-const initialState = [];
+const initialState = { status: 'idle', list: [] };
 
 export const activesSlice = createSlice({
   name: 'actives',
   initialState,
   reducers: {
     completeActiveWord: (state, action) => {
-      state = setNewActiveWords(action.payload, state);
+      state.list = setNewActiveWords(action.payload, state);
       return state;
     },
     wrongGuess: (state, action) => {
       const active = action.payload;
-      state = handleWrongGuess(state, active);
+      state.list = handleWrongGuess(state, active);
       return state;
     },
     restoreActives: () => initialState,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getActiveWords.fulfilled, (state, action) => state = action.payload);
+      .addCase(getActiveWords.pending, (state) => { state.status = 'loading'; })
+      .addCase(getActiveWords.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.list = action.payload;
+      });
   },
 });
 

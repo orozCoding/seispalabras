@@ -8,7 +8,7 @@ import SampleWordForm from '../components/active/sampleWordForm';
 import { volumeOFF, volumeON } from '../redux/soundSlice';
 
 const Home = () => {
-  const actives = useSelector((state) => state.actives);
+  const actives = useSelector((state) => state.actives.list);
   const user = useSelector((state) => state.user);
   const sound = useSelector((state) => state.sound);
 
