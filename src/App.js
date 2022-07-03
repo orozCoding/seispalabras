@@ -20,6 +20,7 @@ import NotFound from './pages/notFoundPage';
 import { checkSession } from './redux/userSlice';
 import { getWordsLength } from './redux/wordsSlice';
 import { getSound } from './redux/soundSlice';
+import Loader from './components/shared/loader';
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -52,6 +53,7 @@ const App = () => {
         <header className="header d-flex">
           <NavBar />
         </header>
+        {user.status === 'loading' && <Loader />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Completed" element={<Completed />} />

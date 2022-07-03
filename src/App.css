@@ -13,6 +13,7 @@
   --color-yellow: #f1a71c;
   --color-white: #fff;
   --color-error: rgb(255, 13, 13);
+  --color-background: #383185;
 }
 
 html,
@@ -20,7 +21,7 @@ body {
   width: 100%;
   text-align: center;
   font-family: 'Ubuntu', sans-serif;
-  background-color: #383185;
+  background-color: var(--color-background);
   font-size: 20px;
   padding-bottom: 25px;
 }
@@ -326,7 +327,7 @@ button {
 .burger-icon {
   position: relative;
   font-size: 30px;
-  background-color: #383185;
+  background-color: var(--color-background);
   color: var(--color-yellow);
   z-index: 0;
   text-align: left;
