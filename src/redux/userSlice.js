@@ -97,7 +97,7 @@ export const userSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(checkSession.fulfilled, (state, action) => {
-        if (!action.payload || action.payload.error) {
+        if (!action.payload || action.payload.error || action.payload.errors) {
           deleteTokenCookie();
           return initialState;
         }

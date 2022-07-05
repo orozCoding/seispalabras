@@ -1,4 +1,5 @@
-const baseURL = 'https://seispalabras.herokuapp.com/';
+// const baseURL = 'https://seispalabras.herokuapp.com';
+const baseURL = 'http://localhost:3000';
 
 const fetchAllWords = async () => {
   const url = `${baseURL}/default/list`;
@@ -151,8 +152,58 @@ const filterCompleted = async (translations) => {
   return res;
 };
 
+const postResetPassword = async (email) => {
+  const url = `${baseURL}/password/reset`;
+
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email }),
+  })
+    .then((resp) => resp.json())
+    .then((data) => data);
+
+  return resp;
+};
+
+const testResetPasswordToken = async (token) => {
+  const url = `${baseURL}/password/reset/edit`;
+
+  const resp = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ token }),
+  })
+    .then((resp) => resp.json())
+    .then((data) => data);
+
+  return resp;
+};
+
+const fetchChangePassword = async (input) => {
+  const url = `${baseURL}/password/reset/edit`;
+
+  const resp = await fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(input),
+  })
+    .then((resp) => resp.json())
+    .then((data) => data);
+
+  return resp;
+};
+
 export {
   fetchAllWords, fetchLogin, fetchSignup, fetchSession,
   fetchWordList, fetchCreateWordList, fetchTranslations,
   fetchCreateTranslation, filterCompleted,
+  postResetPassword, testResetPasswordToken,
+  fetchChangePassword,
 };
