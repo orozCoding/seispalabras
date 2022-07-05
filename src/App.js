@@ -49,7 +49,7 @@ const App = () => {
   }, [dispatch]);
 
   const isLoading = () => {
-    if (user.loading === 'loading' || actives.status === 'loading' || completed.status === 'loading') {
+    if (user.status === 'loading' || actives.status === 'loading' || completed.status === 'loading') {
       return true;
     }
     return false;
