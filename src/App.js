@@ -24,6 +24,8 @@ import Loader from './components/shared/loader';
 
 const App = () => {
   const user = useSelector((state) => state.user);
+  const actives = useSelector((state) => state.actives);
+  const completed = useSelector((state) => state.completed);
 
   const dispatch = useDispatch();
 
@@ -46,6 +48,14 @@ const App = () => {
     dispatch(getSound());
   }, [dispatch]);
 
+  const isLoading = () => {
+    if (user.loading === 'loading' || actives.status === 'loading' || completed.status === 'loading') {
+      console.log('cargando');
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div className="appBody d-flex col">
       <ToastContainer />
@@ -53,7 +63,7 @@ const App = () => {
         <header className="header d-flex">
           <NavBar />
         </header>
-        {user.status === 'loading' && <Loader />}
+        {isLoading() && <Loader />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Completed" element={<Completed />} />

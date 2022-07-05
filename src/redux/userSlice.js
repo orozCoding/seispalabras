@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { setTokenCookie, getTokenCookie, deleteTokenCookie } from './shared/cookies';
 import { fetchSignup, fetchLogin, fetchSession } from './shared/fetches';
 
@@ -88,6 +89,7 @@ export const userSlice = createSlice({
           state.student = action.payload;
           state.logged = true;
           state.error.login = [];
+          toast(`Welcome ${state.student.name}`);
         }
         state.status = 'idle';
       })
@@ -104,6 +106,7 @@ export const userSlice = createSlice({
         state.error = null;
 
         state.status = 'idle';
+        toast(`Welcome back ${state.student.name}`);
       });
   },
 });

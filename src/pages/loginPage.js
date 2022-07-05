@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import LoginForm from '../components/login/LoginForm';
 import { cleanErrors } from '../redux/userSlice';
 
@@ -13,7 +12,6 @@ const LoginPage = () => {
   useEffect(() => {
     if (user.logged) {
       navigate('/');
-      toast(`Welcome ${user.student.name}`);
     }
   }, [user, navigate]);
 

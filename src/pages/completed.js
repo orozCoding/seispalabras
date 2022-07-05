@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Completed = () => {
   const user = useSelector((state) => state.user);
-  const completed = useSelector((state) => state.completed);
+  const completed = useSelector((state) => state.completed.list);
 
   let i = completed.length + 1;
 

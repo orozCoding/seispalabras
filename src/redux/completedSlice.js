@@ -33,18 +33,22 @@ export const getCompleted = createAsyncThunk(
   },
 );
 
-const initialState = [];
+const initialState = { status: 'idle', list: [] };
 
 export const completedSlice = createSlice({
   name: 'completed',
   initialState,
   reducers: {
-    addCompleted: (state, action) => state = pushCompleted(state, action.payload),
+    addCompleted: (state, action) => state.list = pushCompleted(state, action.payload),
     restoreCompleted: () => initialState,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCompleted.fulfilled, (state, action) => state = action.payload);
+      .addCase(getCompleted.pending, (state) => { state.status = 'loading'; })
+      .addCase(getCompleted.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.list = action.payload;
+      });
   },
 });
 
