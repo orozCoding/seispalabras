@@ -50,7 +50,6 @@ const App = () => {
 
   const isLoading = () => {
     if (user.loading === 'loading' || actives.status === 'loading' || completed.status === 'loading') {
-      console.log('cargando');
       return true;
     }
     return false;

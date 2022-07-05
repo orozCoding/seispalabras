@@ -14,8 +14,8 @@ const checkCompleted = async (token) => {
   return completed;
 };
 
-const pushCompleted = (state, payload) => {
-  const completed = state;
+const pushCompleted = (list, payload) => {
+  const completed = list;
   const { active: word, token } = payload;
   completed.unshift(word);
   fetchCreateTranslation(token, word);
@@ -39,7 +39,9 @@ export const completedSlice = createSlice({
   name: 'completed',
   initialState,
   reducers: {
-    addCompleted: (state, action) => state.list = pushCompleted(state, action.payload),
+    addCompleted: (state, action) => {
+      state.list = pushCompleted(state.list, action.payload);
+    },
     restoreCompleted: () => initialState,
   },
   extraReducers: (builder) => {

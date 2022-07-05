@@ -77,8 +77,8 @@ const setNewActiveWords = (payload, state) => {
   return newActives;
 };
 
-const handleWrongGuess = (state, active) => {
-  const newActives = state.map((word) => {
+const handleWrongGuess = (list, active) => {
+  const newActives = list.map((word) => {
     if (word.id === active.id) {
       word = { ...word, tried: true };
     }
@@ -107,12 +107,12 @@ export const activesSlice = createSlice({
   initialState,
   reducers: {
     completeActiveWord: (state, action) => {
-      state.list = setNewActiveWords(action.payload, state);
+      state.list = setNewActiveWords(action.payload, state.list);
       return state;
     },
     wrongGuess: (state, action) => {
       const active = action.payload;
-      state.list = handleWrongGuess(state, active);
+      state.list = handleWrongGuess(state.list, active);
       return state;
     },
     restoreActives: () => initialState,
