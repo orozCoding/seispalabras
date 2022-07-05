@@ -26,7 +26,7 @@ const LoginForm = () => {
       method="POST"
       onSubmit={handleSubmit}
       noValidate
-      name="login-form"
+      name="recover-form"
     >
       {user.error.login.length > 0
         && <p className="form-error-text">Wrong email or password</p>}

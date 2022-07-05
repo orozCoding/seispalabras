@@ -21,6 +21,7 @@ import { checkSession } from './redux/userSlice';
 import { getWordsLength } from './redux/wordsSlice';
 import { getSound } from './redux/soundSlice';
 import Loader from './components/shared/loader';
+import Reset from './pages/recoverPage';
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/About" element={<About />} />
           <Route path="/Login" element={user.logged ? <Navigate to="/" /> : <LoginPage />} />
           <Route path="/Signup" element={user.logged ? <Navigate to="/" /> : <SignUpPage />} />
+          <Route path="/Reset" element={<Reset />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>

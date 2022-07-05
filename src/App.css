@@ -107,7 +107,8 @@ button {
 
 /* Home */
 
-.home-container {
+.home-container,
+.reset-container {
   margin-top: 15px;
   gap: 25px;
   max-width: 900px;
@@ -415,4 +416,23 @@ button {
     justify-self: flex-start;
     flex-grow: 1;
   }
+}
+
+/* reset page */
+
+.reset-notification-container {
+  max-width: 300px;
+}
+
+.recover-form-email {
+  width: 300px;
+}
+
+.reset-notification {
+  font-size: 14px;
+  color: var(--color-yellow);
+}
+
+.reset-form {
+  width: 80%;
 }
