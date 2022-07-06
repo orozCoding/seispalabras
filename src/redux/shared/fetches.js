@@ -92,6 +92,7 @@ const fetchCreateWordList = async (token, input) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: `${token}`,
     },
     body: JSON.stringify(wordList),
@@ -109,6 +110,7 @@ const fetchTranslations = async (token) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: `${token}`,
     },
   })
@@ -130,6 +132,7 @@ const fetchCreateTranslation = async (token, word) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: `${token}`,
     },
     body: JSON.stringify(input),
@@ -159,6 +162,7 @@ const postResetPassword = async (email) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify({ email }),
   })
@@ -175,6 +179,7 @@ const testResetPasswordToken = async (token) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify({ token }),
   })
@@ -191,11 +196,13 @@ const fetchChangePassword = async (input) => {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify(input),
   })
     .then((resp) => resp.json())
-    .then((data) => data);
+    .then((data) => data)
+    .catch((error) => error);
 
   return resp;
 };

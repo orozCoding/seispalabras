@@ -21,7 +21,7 @@ import { checkSession } from './redux/userSlice';
 import { getWordsLength } from './redux/wordsSlice';
 import { getSound } from './redux/soundSlice';
 import Loader from './components/shared/loader';
-import Reset from './pages/recoverPage';
+import Reset from './pages/resetPage';
 import ChangePasswordPage from './pages/changePasswordPage';
 
 const App = () => {

@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ChangePasswordForm from '../components/password/ChangePasswordForm';
 
 const ChangePasswordPage = () => {
+  const user = useSelector((state) => state.user);
   const { token } = useParams();
-  const [checkResult, setCheckResult] = useState('');
+  // const [checkResult, setCheckResult] = useState('');
   const navigate = useNavigate();
   const baseURL = 'http://localhost:3000';
+
+  useEffect(() => {
+    if (user.logged) {
+      navigate('/');
+      toast('Sign Out before resetting your password');
+    }
+  }, [user]);
 
   useEffect(() => {
     const testResetPasswordToken = async (token) => {
@@ -21,9 +30,7 @@ const ChangePasswordPage = () => {
         body: JSON.stringify({ token }),
       })
         .then((resp) => resp.json())
-        .then((data) => {
-          setCheckResult(data);
-        })
+        .then((data) => data)
         .catch((error) => error);
 
       return resp;
@@ -31,7 +38,7 @@ const ChangePasswordPage = () => {
 
     const checkResetToken = async (token) => {
       const check = await testResetPasswordToken(token);
-      if (typeof check === 'object') {
+      if (typeof check === 'object' || check.errors || check.error) {
         navigate('/Reset');
         toast('Your link expired.');
       }
@@ -41,12 +48,10 @@ const ChangePasswordPage = () => {
   }, []);
 
   return (
-    <div>
-      <p>Hello from page</p>
+    <section className="change-container d-flex col">
+      <p className="title bold">Create New Password</p>
       <ChangePasswordForm />
-      <p>acá</p>
-      <p>{checkResult.name}</p>
-    </div>
+    </section>
   );
 };
 

@@ -108,7 +108,8 @@ button {
 /* Home */
 
 .home-container,
-.reset-container {
+.reset-container,
+.change-container {
   margin-top: 15px;
   gap: 25px;
   max-width: 900px;
