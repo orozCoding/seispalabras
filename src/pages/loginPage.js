@@ -26,6 +26,7 @@ const LoginPage = () => {
       <div className="login-signup-text d-flex col">
         <p>Don&apos;t have an account?</p>
         <NavLink to="/Signup" className="myLink">SIGN UP HERE</NavLink>
+        <NavLink to="/Reset" className="myLink">Reset password</NavLink>
       </div>
     </section>
   );

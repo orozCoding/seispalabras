@@ -172,7 +172,7 @@ const testResetPasswordToken = async (token) => {
   const url = `${baseURL}/password/reset/edit`;
 
   const resp = await fetch(url, {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
