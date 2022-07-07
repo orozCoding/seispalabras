@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -7,9 +7,8 @@ import ChangePasswordForm from '../components/password/ChangePasswordForm';
 const ChangePasswordPage = () => {
   const user = useSelector((state) => state.user);
   const { token } = useParams();
-  // const [checkResult, setCheckResult] = useState('');
   const navigate = useNavigate();
-  const baseURL = 'http://localhost:3000';
+  const baseURL = 'https://seispalabras.herokuapp.com';
 
   useEffect(() => {
     if (user.logged) {
@@ -38,10 +37,13 @@ const ChangePasswordPage = () => {
 
     const checkResetToken = async (token) => {
       const check = await testResetPasswordToken(token);
-      if (typeof check === 'object' || check.errors || check.error) {
-        navigate('/Reset');
-        toast('Your link expired.');
+
+      if (check.id) {
+        return true;
       }
+      navigate('/Reset');
+      toast('Your link expired.');
+      return false;
     };
 
     checkResetToken(token);

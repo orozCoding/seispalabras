@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { fetchChangePassword } from '../../redux/shared/fetches';
@@ -23,8 +23,6 @@ const ChangePasswordForm = () => {
 
     const fetch = await fetchChangePassword(input);
 
-    console.log('aca ya no');
-
     if (input.user.password === '' || input.user.password_confirmation === '') {
       setErrors({ password: ['Both fields are required'] });
       return false;
@@ -34,10 +32,10 @@ const ChangePasswordForm = () => {
       setErrors(fetch);
       return false;
     }
-    console.log('llego');
 
     navigate('/');
     toast('Password updated. Please log in');
+    return true;
   };
 
   const renderErrors = (errors) => errors.map((error) => (
