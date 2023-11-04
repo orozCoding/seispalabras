@@ -1,39 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import ActiveWords from "../components/active/activeWords";
 import SampleWordForm from "../components/active/sampleWordForm";
 import { volumeOFF, volumeON } from "../redux/soundSlice";
+import { getWords } from "../redux/userSlice";
 
 const Home = () => {
   const sound = useSelector((state) => state.sound);
   const user = useSelector((state) => state.user);
-  const active_words = useSelector((state) => state.user.active_words);
+  const { active_words, translated_today_count } = user;
 
   const dispatch = useDispatch();
 
-  const userFinishedToday = () => {
-    // check every element in active_words.translated
-    return (
-      active_words &&
-      active_words.every((active) => {
-        active.translated;
-      })
-    );
-  };
-
-  const countUncompleted = () => {
-    let n = 0;
-    active_words.forEach((active) => {
-      if (!active.completed) {
-        n += 1;
-      }
-    });
-    return n;
-  };
+  useEffect(() => {
+    if (user.logged) {
+      dispatch(getWords());
+    }
+  }, [dispatch]);
 
   const renderProgress = () => {
-    if (userFinishedToday()) {
+    if (translated_today_count === 6) {
       return (
         <div>
           <p>Congratulations!</p>
@@ -42,7 +29,7 @@ const Home = () => {
         </div>
       );
     }
-    return <div>{`${countUncompleted()} more to go...`}</div>;
+    return <div>{`${6 - translated_today_count} more to go...`}</div>;
   };
 
   const handleSound = () => {
@@ -60,7 +47,7 @@ const Home = () => {
           <p className="title bold">Seis Palabras Diarias</p>
           <p>Type a Spanish word for:</p>
           <ActiveWords active_words={active_words} />
-          <div>{renderProgress()}</div>
+          <div>{translated_today_count && renderProgress()}</div>
         </>
       ) : (
         <>

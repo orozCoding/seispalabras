@@ -35,8 +35,6 @@ const NavBar = () => {
 
   const handleSignOut = () => {
     dispatch(logOut());
-    dispatch(restoreActives());
-    dispatch(restoreCompleted());
     navigate("/");
     toast("Signed out successfully");
   };

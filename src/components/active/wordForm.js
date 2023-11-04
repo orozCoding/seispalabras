@@ -3,12 +3,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useSound from "use-sound";
 import { filterAnswer, filterCorrectAnswers } from "../words/wordFilters";
-import { createTranslation } from "../../redux/userSlice";
+import { createTranslation, incrementTranslatedToday, reloadWordsWithoutLoading } from "../../redux/userSlice";
 
 const WordForm = (props) => {
   const { word } = props;
   const [translated, setTranslated] = useState(word.translated);
-  const token = useSelector((state) => state.user.student.token);
   const sound = useSelector((state) => state.sound);
 
   const dispatch = useDispatch();
@@ -30,6 +29,8 @@ const WordForm = (props) => {
       };
       dispatch(createTranslation(object));
       setTranslated(true);
+      dispatch(incrementTranslatedToday());
+      dispatch(reloadWordsWithoutLoading());
       if (sound) playCorrect();
       return true;
     } else {

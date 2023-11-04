@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getTranslations } from "../redux/userSlice";
+import { getTranslations, getWords } from "../redux/userSlice";
 
 const Completed = () => {
   const user = useSelector((state) => state.user);
@@ -9,10 +9,11 @@ const Completed = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.logged && !user.translated_words) {
+    if (user.logged) {
       dispatch(getTranslations());
+      dispatch(getWords());
     }
-  }, [dispatch, user]);
+  }, []);
 
   let i = completed.length + 1;
 
