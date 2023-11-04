@@ -68,7 +68,6 @@ export const getTranslations = createAsyncThunk("user/getTranslations", async ()
 });
 
 export const createTranslation = createAsyncThunk("user/createTranslation", async (object) => {
-  console.log(object);
   const token = getTokenCookie();
   if (token) {
     const response = await fetchCreateTranslation(token, object.used_word, object.word_id);
@@ -151,7 +150,6 @@ export const userSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getTranslations.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.translated_words = action.payload;
         state.status = "idle";
       });

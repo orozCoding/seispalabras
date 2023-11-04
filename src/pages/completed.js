@@ -14,10 +14,6 @@ const Completed = () => {
     }
   }, [dispatch, user]);
 
-  useEffect(() => {
-    console.log("completed", completed);
-  }, [completed]);
-
   let i = completed.length + 1;
 
   return (
@@ -25,24 +21,24 @@ const Completed = () => {
       <p className="title bold">Completed Words</p>
       {user.logged && completed ? (
         <>
-          {completed.length > 0 && <p>Check the words you have translated:</p>}
-          {!completed.length && <p>After translating the first word, the completed ones will be stored here.</p>}
+          {completed.length > 0 ? (
+            <p>Your translations:</p>
+          ) : (
+            <p>After translating the first word, the completed ones will be stored here.</p>
+          )}
           <div className="completedWords d-flex col">
             {completed.map((word) => {
               i -= 1;
               return (
-                <div key={word.id} className="d-flex col">
+                <div key={word.word_id} className="d-flex col completedWordContainer">
                   <p>
-                    {i}. <span className="completedWord">{word.used_word.toUpperCase()}</span> in Spanish can be:
+                    {i}. <span className="completedWord">{word.word.toUpperCase()}</span> means{" "}
+                    <span className="possibleWord">{word.used_word.toUpperCase()}</span>
                   </p>
-                  {word.s.length > 1 && (
+
+                  {word.alternative_answers.length > 0 && (
                     <p>
-                      <span className="possibleWord">{word.s.join(", ")}</span> and more.
-                    </p>
-                  )}
-                  {word.s.length < 2 && (
-                    <p>
-                      <span className="possibleWord">{word.s.join(", ")}</span>.
+                      (also <span className="possibleWord">{word.alternative_answers.join(", ")}</span>)
                     </p>
                   )}
                 </div>

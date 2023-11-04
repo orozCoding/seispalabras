@@ -190,12 +190,21 @@ button {
   max-width: 600px;
 }
 
+
 .completedWords {
-  gap: 15px;
+  gap: 20px;
+}
+
+.completedWords > p {
+  padding: 10px 0;
 }
 
 .completedWord {
   color: #f1a71c;
+}
+
+.completedWordContainer {
+  gap: 5px;
 }
 
 .possibleWord {
