@@ -3,53 +3,65 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { setTokenCookie, getTokenCookie, deleteTokenCookie } from './shared/cookies';
-import { fetchSignup, fetchLogin, fetchSession } from './shared/fetches';
+import { fetchSignup, fetchLogin, fetchSession, fetchWords, fetchTranslations } from "./shared/fetches";
 
 const initialState = {
   logged: false,
   registered: false,
-  status: 'idle',
+  status: "idle",
   error: { login: [], signup: [] },
   student: null,
+  active_words: false,
+  translated_words: false,
 };
 
-export const signup = createAsyncThunk(
-  'user/signup',
-  async (input) => {
-    const response = await fetchSignup(input);
-    // The value we return becomes the `fulfilled` action payload
+export const signup = createAsyncThunk("user/signup", async (input) => {
+  const response = await fetchSignup(input);
+  // The value we return becomes the `fulfilled` action payload
+  return response;
+});
+
+export const login = createAsyncThunk("user/login", async (input) => {
+  const response = await fetchLogin(input);
+  // The value we return becomes the `fulfilled` action payload
+  if (response.token) {
+    const date = new Date(response.exp);
+    setTokenCookie(response.token, date);
+  }
+  return response;
+});
+
+export const checkSession = createAsyncThunk("user/checkSession", async () => {
+  const token = getTokenCookie();
+
+  if (token) {
+    const response = await fetchSession(token);
+    return { ...response, token };
+  }
+  return null;
+});
+
+export const getWords = createAsyncThunk("user/getWords", async () => {
+  const token = getTokenCookie();
+
+  if (token) {
+    const response = await fetchWords(token);
     return response;
-  },
-);
+  }
+  return null;
+});
 
-export const login = createAsyncThunk(
-  'user/login',
-  async (input) => {
-    const response = await fetchLogin(input);
-    // The value we return becomes the `fulfilled` action payload
-    if (response.token) {
-      const date = new Date(response.exp);
-      setTokenCookie(response.token, date);
-    }
+export const getTranslations = createAsyncThunk("user/getTranslations", async () => {
+  const token = getTokenCookie();
+  if (token) {
+    const response = await fetchTranslations(token);
     return response;
-  },
-);
-
-export const checkSession = createAsyncThunk(
-  'user/checkSession',
-  async () => {
-    const token = getTokenCookie();
-
-    if (token) {
-      const response = await fetchSession(token);
-      return { ...response, token };
-    }
-    return null;
-  },
-);
+  }
+  return null;
+});
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     logOut: () => {
@@ -66,7 +78,7 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signup.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(signup.fulfilled, (state, action) => {
         if (!action.payload.id) {
@@ -75,10 +87,10 @@ export const userSlice = createSlice({
           state.registered = true;
           state.error.signup = [];
         }
-        state.status = 'idle';
+        state.status = "idle";
       })
       .addCase(login.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload.error) {
@@ -91,10 +103,10 @@ export const userSlice = createSlice({
           state.error.login = [];
           toast(`Welcome ${state.student.name}`);
         }
-        state.status = 'idle';
+        state.status = "idle";
       })
       .addCase(checkSession.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(checkSession.fulfilled, (state, action) => {
         if (!action.payload || action.payload.error || action.payload.errors) {
@@ -105,15 +117,23 @@ export const userSlice = createSlice({
         state.logged = true;
         state.error = null;
 
-        state.status = 'idle';
+        state.status = "idle";
         toast(`Welcome back ${state.student.name}`);
+      })
+      .addCase(getWords.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getWords.fulfilled, (state, action) => {
+        if (action.payload.error) {
+          return null;
+        }
+        console.log(action.payload);
+        state.active_words = action.payload;
+        state.status = "idle";
       });
   },
 });
 
-export const {
-  getCompleted, addCompleted,
-  logOut, cleanErrors, cleanRegistered,
-} = userSlice.actions;
+export const { getCompleted, addCompleted, logOut, cleanErrors, cleanRegistered } = userSlice.actions;
 
 export default userSlice.reducer;

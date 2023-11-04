@@ -1,13 +1,9 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { logOut } from '../../redux/userSlice';
-import { restoreActives } from '../../redux/activesSlice';
-import { restoreCompleted } from '../../redux/completedSlice';
-import { volumeOFF, volumeON } from '../../redux/soundSlice';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { logOut } from "../../redux/userSlice";
+import { volumeOFF, volumeON } from "../../redux/soundSlice";
 
 const NavBar = () => {
   const user = useSelector((state) => state.user);
@@ -27,7 +23,7 @@ const NavBar = () => {
     }
     setClicked(false);
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       if (window.innerWidth <= 600) {
         setMobile(true);
       } else {
@@ -41,8 +37,8 @@ const NavBar = () => {
     dispatch(logOut());
     dispatch(restoreActives());
     dispatch(restoreCompleted());
-    navigate('/');
-    toast('Signed out successfully');
+    navigate("/");
+    toast("Signed out successfully");
   };
 
   const handleBurgerClick = () => {
@@ -60,24 +56,24 @@ const NavBar = () => {
   return (
     <nav id="navBar" className="navBar d-flex">
       <div>
-        {sound ? <i className="bi bi-volume-up volume-icon" onClick={handleSound} />
-          : <i className="bi bi-volume-mute volume-icon" onClick={handleSound} />}
+        {sound ? (
+          <i className="bi bi-volume-up volume-icon" onClick={handleSound} />
+        ) : (
+          <i className="bi bi-volume-mute volume-icon" onClick={handleSound} />
+        )}
       </div>
       <div>
-        <i
-          className={`burger-icon bi bi-list click ${mobile ? '' : 'none'}`}
-          onClick={handleBurgerClick}
-        />
+        <i className={`burger-icon bi bi-list click ${mobile ? "" : "none"}`} onClick={handleBurgerClick} />
       </div>
       <ul
         id="pagesList"
-        className={`links-container d-flex bold ${mobile ? 'mobile' : ''}
-      ${clicked ? 'show' : 'hide'}`}
+        className={`links-container d-flex bold ${mobile ? "mobile" : ""}
+      ${clicked ? "show" : "hide"}`}
       >
         <li key="Home">
           <NavLink
             to="/"
-            className={({ isActive }) => (isActive ? 'activeLink' : 'pageLink')}
+            className={({ isActive }) => (isActive ? "activeLink" : "pageLink")}
             onClick={handleBurgerClick}
           >
             HOME
@@ -86,7 +82,7 @@ const NavBar = () => {
         <li key="Completed">
           <NavLink
             to="/Completed"
-            className={({ isActive }) => (isActive ? 'activeLink' : 'pageLink')}
+            className={({ isActive }) => (isActive ? "activeLink" : "pageLink")}
             onClick={handleBurgerClick}
           >
             COMPLETED
@@ -95,7 +91,7 @@ const NavBar = () => {
         <li key="About">
           <NavLink
             to="/About"
-            className={({ isActive }) => (isActive ? 'activeLink' : 'pageLink')}
+            className={({ isActive }) => (isActive ? "activeLink" : "pageLink")}
             onClick={handleBurgerClick}
           >
             ABOUT
@@ -105,7 +101,7 @@ const NavBar = () => {
           <li key="Login">
             <NavLink
               to="/Login"
-              className={({ isActive }) => (isActive ? 'activeLink' : 'pageLink')}
+              className={({ isActive }) => (isActive ? "activeLink" : "pageLink")}
               onClick={handleBurgerClick}
             >
               LOGIN

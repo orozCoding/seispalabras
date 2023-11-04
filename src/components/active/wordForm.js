@@ -3,8 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSound from 'use-sound';
 import { filterGuess, filterCorrectAnswers } from '../words/wordFilters';
-import { addCompleted } from '../../redux/completedSlice';
-import { completeActiveWord, wrongGuess } from '../../redux/activesSlice';
+import { addCompleted } from "../../redux/completedSlice";
 
 const WordForm = (props) => {
   const { active } = props;

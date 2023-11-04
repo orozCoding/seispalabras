@@ -1,7 +1,7 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchTranslations, fetchCreateTranslation, filterCompleted } from './shared/fetches';
+import { fetchTranslations, fetchCreateTranslation } from "./shared/fetches";
 
 const checkCompleted = async (token) => {
   const completed = [];
