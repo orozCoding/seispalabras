@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import useSound from 'use-sound';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useSound from "use-sound";
 import { filterAnswer, filterCorrectAnswers } from "../words/wordFilters";
-import { addCompleted } from "../../redux/completedSlice";
-import { fetchCreateTranslation } from "../../redux/shared/fetchCreateTranslation";
+import { createTranslation } from "../../redux/userSlice";
 
 const WordForm = (props) => {
   const { word } = props;
+  const [translated, setTranslated] = useState(word.translated);
   const token = useSelector((state) => state.user.student.token);
   const sound = useSelector((state) => state.sound);
 
@@ -23,18 +23,19 @@ const WordForm = (props) => {
 
     const correctWord = correctAnswers.find((correct) => correct === filteredAnswer);
 
-    if (correctAnswers.includes(filteredAnswer)) {
-      dispatch(fetchCreateTranslation({ word, token }));
-      dispatch(addCompleted({ word, token }));
-      if (sound) {
-        playCorrect();
-      }
+    if (correctWord) {
+      const object = {
+        used_word: correctWord,
+        word_id: word.id,
+      };
+      dispatch(createTranslation(object));
+      setTranslated(true);
+      if (sound) playCorrect();
       return true;
+    } else {
+      if (sound) playWrong();
+      return false;
     }
-    if (sound) {
-      playWrong();
-    }
-    return false;
   };
 
   const handleSubmit = (e) => {
@@ -59,7 +60,9 @@ const WordForm = (props) => {
       autoComplete="off"
     >
       <div className="wordTitle rub bold">{word.e.toUpperCase()}</div>
-      {!word.completed && (
+      {translated ? (
+        <div className="correctText bold">Correct!</div>
+      ) : (
         <div className="d-flex col form-input-container">
           <input
             id={`input-${word.id}`}
@@ -74,7 +77,6 @@ const WordForm = (props) => {
           </button>
         </div>
       )}
-      {word.completed && <div className="correctText bold">Correct!</div>}
     </form>
   );
 };

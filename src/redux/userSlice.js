@@ -3,7 +3,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { setTokenCookie, getTokenCookie, deleteTokenCookie } from './shared/cookies';
-import { fetchSignup, fetchLogin, fetchSession, fetchWords, fetchTranslations } from "./shared/fetches";
+import {
+  fetchSignup,
+  fetchLogin,
+  fetchSession,
+  fetchWords,
+  fetchTranslations,
+  fetchCreateTranslation,
+} from "./shared/fetches";
 
 const initialState = {
   logged: false,
@@ -55,6 +62,16 @@ export const getTranslations = createAsyncThunk("user/getTranslations", async ()
   const token = getTokenCookie();
   if (token) {
     const response = await fetchTranslations(token);
+    return response;
+  }
+  return null;
+});
+
+export const createTranslation = createAsyncThunk("user/createTranslation", async (object) => {
+  console.log(object);
+  const token = getTokenCookie();
+  if (token) {
+    const response = await fetchCreateTranslation(token, object.used_word, object.word_id);
     return response;
   }
   return null;

@@ -81,12 +81,12 @@ const fetchSignup = async (input) => {
   return resp;
 };
 
-const fetchCreateTranslation = async (token, word) => {
+const fetchCreateTranslation = async (token, used_word, word_id) => {
   const url = `${baseURL}/translations`;
 
   const input = {
-    used_word: word.e,
-    word_id: word.id,
+    used_word: used_word,
+    word_id: word_id,
   };
 
   const resp = await fetch(url, {
