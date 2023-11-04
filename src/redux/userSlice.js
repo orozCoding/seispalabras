@@ -151,6 +151,7 @@ export const userSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getTranslations.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.translated_words = action.payload;
         state.status = "idle";
       });

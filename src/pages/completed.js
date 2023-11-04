@@ -14,6 +14,10 @@ const Completed = () => {
     }
   }, [dispatch, user]);
 
+  useEffect(() => {
+    console.log("completed", completed);
+  }, [completed]);
+
   let i = completed.length + 1;
 
   return (
@@ -29,7 +33,7 @@ const Completed = () => {
               return (
                 <div key={word.id} className="d-flex col">
                   <p>
-                    {i}. <span className="completedWord">{word.e.toUpperCase()}</span> in Spanish can be:
+                    {i}. <span className="completedWord">{word.used_word.toUpperCase()}</span> in Spanish can be:
                   </p>
                   {word.s.length > 1 && (
                     <p>
