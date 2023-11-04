@@ -127,8 +127,14 @@ export const userSlice = createSlice({
         if (action.payload.error) {
           return null;
         }
-        console.log(action.payload);
         state.active_words = action.payload;
+        state.status = "idle";
+      })
+      .addCase(getTranslations.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getTranslations.fulfilled, (state, action) => {
+        state.translated_words = action.payload;
         state.status = "idle";
       });
   },

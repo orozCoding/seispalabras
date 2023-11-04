@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import useSound from 'use-sound';
-import { filterGuess, filterCorrectAnswers } from '../words/wordFilters';
+import { filterAnswer, filterCorrectAnswers } from "../words/wordFilters";
 
 const SampleWordForm = () => {
   const sound = useSelector((state) => state.sound);
@@ -27,7 +27,7 @@ const SampleWordForm = () => {
   );
 
   const checkAnswer = (input) => {
-    const answer = filterGuess(input);
+    const answer = filterAnswer(input);
     const correctAnswers = filterCorrectAnswers(answer, active);
     if (correctAnswers.includes(answer)) {
       setActive({ ...sample, completed: true });

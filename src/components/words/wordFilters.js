@@ -4,11 +4,14 @@ const checkForAccentMark = (guess) => {
   return bool;
 };
 
-const filterGuess = (answer) => {
+const filterAnswer = (answer) => {
   if (checkForAccentMark(answer)) {
-    return answer.toLowerCase().replace(/\s/gu, '');
+    return answer.toLowerCase().replace(/\s/gu, "");
   }
-  const filtered = answer.toLowerCase().normalize('NFD').replace(/\p{Diacritic}|\s/gu, '');
+  const filtered = answer
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}|\s/gu, "");
   return filtered;
 };
 
@@ -25,4 +28,4 @@ const filterCorrectAnswers = (answer, activeWord) => {
   return correctAnswers;
 };
 
-export { checkForAccentMark, filterGuess, filterCorrectAnswers };
+export { checkForAccentMark, filterAnswer, filterCorrectAnswers };

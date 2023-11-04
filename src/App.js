@@ -11,7 +11,7 @@ import About from "./pages/aboutPage";
 import LoginPage from "./pages/loginPage";
 import SignUpPage from "./pages/signUpPage";
 import NotFound from "./pages/notFoundPage";
-import { checkSession, getWords, getTranslations } from "./redux/userSlice";
+import { checkSession, getWords } from "./redux/userSlice";
 import { getSound } from "./redux/soundSlice";
 import Loader from "./components/shared/loader";
 import Reset from "./pages/resetPage";
@@ -33,7 +33,6 @@ const App = () => {
   useEffect(() => {
     if (user.logged && !user.active_words) {
       dispatch(getWords());
-      dispatch(getTranslations());
     }
   }, [dispatch, user]);
 
