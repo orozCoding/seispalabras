@@ -107,9 +107,14 @@ export const userSlice = createSlice({
     addTranslatedWord: (state, action) => {
       state.translated_words.push(action.payload);
     },
-    setTranslatedActiveWord: (state, action) => {
-      const word = state.active_words.find((word) => word.id === action.payload.id);
-      word.translated = true;
+    setTranslatedActiveWordWithId: (state, action) => {
+      state.active_words = state.active_words.map((word) => {
+        if (word.id === action.payload) {
+          word.translated = true;
+          return word;
+        }
+        return word;
+      });
     },
   },
   extraReducers: (builder) => {
@@ -174,14 +179,6 @@ export const userSlice = createSlice({
       .addCase(getTranslations.fulfilled, (state, action) => {
         state.translated_words = action.payload;
         state.status = "idle";
-      })
-      .addCase(reloadWordsWithoutLoading.fulfilled, (state, action) => {
-        if (action.payload.error) {
-          return null;
-        }
-        state.active_words = action.payload;
-        state.translated_today_count = action.payload.filter((word) => word.translated).length;
-        state.status = "idle";
       });
   },
 });
@@ -194,7 +191,7 @@ export const {
   cleanRegistered,
   incrementTranslatedToday,
   addTranslatedWord,
-  setTranslatedActiveWord,
+  setTranslatedActiveWordWithId,
 } = userSlice.actions;
 
 export default userSlice.reducer;

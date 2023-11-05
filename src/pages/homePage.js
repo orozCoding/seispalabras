@@ -13,12 +13,6 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (user.logged) {
-      dispatch(getWords());
-    }
-  }, [dispatch]);
-
   const renderProgress = () => {
     if (translated_today_count === 6) {
       return (
@@ -47,7 +41,7 @@ const Home = () => {
           <p className="title bold">Seis Palabras Diarias</p>
           <p>Type a Spanish word for:</p>
           <ActiveWords active_words={active_words} />
-          <div>{translated_today_count && renderProgress()}</div>
+          <div>{renderProgress()}</div>
         </>
       ) : (
         <>

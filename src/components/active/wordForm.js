@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useSound from "use-sound";
-import { filterAnswer, filterCorrectAnswers } from "../words/wordFilters";
-import { createTranslation, incrementTranslatedToday, reloadWordsWithoutLoading } from "../../redux/userSlice";
+import { findCorrectAnswer } from "../words/wordFilters";
+import { createTranslation, incrementTranslatedToday, setTranslatedActiveWordWithId } from "../../redux/userSlice";
 
 const WordForm = (props) => {
   const { word } = props;
@@ -16,11 +16,8 @@ const WordForm = (props) => {
 
   const [playWrong] = useSound("wrong.mp3", { volume: 0.5 });
 
-  const checkAnswer = (answer) => {
-    const filteredAnswer = filterAnswer(answer);
-    const correctAnswers = filterCorrectAnswers(filteredAnswer, word);
-
-    const correctWord = correctAnswers.find((correct) => correct === filteredAnswer);
+  const handleAnswer = (answer) => {
+    const correctWord = findCorrectAnswer(answer, word);
 
     if (correctWord) {
       const object = {
@@ -30,7 +27,7 @@ const WordForm = (props) => {
       dispatch(createTranslation(object));
       setTranslated(true);
       dispatch(incrementTranslatedToday());
-      dispatch(reloadWordsWithoutLoading());
+      dispatch(setTranslatedActiveWordWithId(object.word_id));
       if (sound) playCorrect();
       return true;
     } else {
@@ -42,7 +39,7 @@ const WordForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const answer = e.target.answer.value;
-    checkAnswer(answer);
+    handleAnswer(answer);
   };
 
   const checkTries = () => {
