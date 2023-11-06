@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getTranslations, getWords } from "../redux/userSlice";
+import { getTranslations } from "../redux/userSlice";
 
 const Completed = () => {
   const user = useSelector((state) => state.user);

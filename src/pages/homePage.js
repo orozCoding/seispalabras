@@ -48,9 +48,8 @@ const Home = () => {
           <p className="title bold">Seis Palabras Diarias</p>
           <p>Practice and improve your Spanish vocabulary translating six words every day!</p>
           <p>
-            The idea of
-            <strong className="yellow">Seis Palabras</strong>
-            is to help you create a habit that will help you improve your Spanish.
+            The idea of <strong className="yellow">Seis Palabras</strong> is to help you create a habit that will help
+            you improve your Spanish.
           </p>
           <p>Example:</p>
           <p>Type a Spanish word for...</p>
@@ -58,11 +57,11 @@ const Home = () => {
           <div>
             <NavLink to="/login" className="myLink">
               Log In
-            </NavLink>
-            or
+            </NavLink>{" "}
+            or{" "}
             <NavLink to="/signup" className="myLink">
               Sign Up
-            </NavLink>
+            </NavLink>{" "}
             to start practicing your Spanish with 6 new words daily.
           </div>
         </>

@@ -1,26 +1,25 @@
-/* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = true;
 
 const checkSound = () => {
-  if (localStorage.getItem('sp_sound')) {
-    return JSON.parse(localStorage.getItem('sp_sound'));
+  if (localStorage.getItem("sp_sound")) {
+    return JSON.parse(localStorage.getItem("sp_sound"));
   }
   return true;
 };
 
 export const soundSlice = createSlice({
-  name: 'sound',
+  name: "sound",
   initialState,
   reducers: {
     getSound: () => checkSound(),
     volumeON: () => {
-      localStorage.setItem('sp_sound', JSON.stringify(true));
+      localStorage.setItem("sp_sound", JSON.stringify(true));
       return true;
     },
     volumeOFF: () => {
-      localStorage.setItem('sp_sound', JSON.stringify(false));
+      localStorage.setItem("sp_sound", JSON.stringify(false));
       return false;
     },
   },

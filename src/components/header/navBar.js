@@ -86,6 +86,15 @@ const NavBar = () => {
             COMPLETED
           </NavLink>
         </li>
+        <li key="Leaderboard">
+          <NavLink
+            to="/Leaderboard"
+            className={({ isActive }) => (isActive ? "activeLink" : "pageLink")}
+            onClick={handleBurgerClick}
+          >
+            LEADERBOARD
+          </NavLink>
+        </li>
         <li key="About">
           <NavLink
             to="/About"

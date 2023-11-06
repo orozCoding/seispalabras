@@ -1,8 +1,6 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable consistent-return */
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
-import { setTokenCookie, getTokenCookie, deleteTokenCookie } from './shared/cookies';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import { setTokenCookie, getTokenCookie, deleteTokenCookie } from "./shared/cookies";
 import {
   fetchSignup,
   fetchLogin,

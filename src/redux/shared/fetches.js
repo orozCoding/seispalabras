@@ -156,6 +156,21 @@ const fetchChangePassword = async (input) => {
   return resp;
 };
 
+const fetchLeaderboard = async () => {
+  const url = `${baseURL}/top`;
+
+  const resp = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((resp) => resp.json())
+    .then((data) => data);
+
+  return resp;
+};
+
 export {
   fetchLogin,
   fetchSignup,
@@ -166,4 +181,5 @@ export {
   postResetPassword,
   testResetPasswordToken,
   fetchChangePassword,
+  fetchLeaderboard,
 };

@@ -11,6 +11,7 @@ import About from "./pages/aboutPage";
 import LoginPage from "./pages/loginPage";
 import SignUpPage from "./pages/signUpPage";
 import NotFound from "./pages/notFoundPage";
+import Leaderboard from "./pages/Leaderboard";
 import { checkSession, getWords, getTranslations } from "./redux/userSlice";
 import { getSound } from "./redux/soundSlice";
 import Loader from "./components/shared/loader";
@@ -19,6 +20,7 @@ import ChangePasswordPage from "./pages/changePasswordPage";
 
 const App = () => {
   const user = useSelector((state) => state.user);
+  const leaderboard = useSelector((state) => state.leaderboard);
 
   const dispatch = useDispatch();
 
@@ -38,7 +40,7 @@ const App = () => {
   }, [dispatch, user]);
 
   const isLoading = () => {
-    return user.status === "loading";
+    return user.status === "loading" || leaderboard.status === "loading";
   };
 
   return (
@@ -53,6 +55,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/Completed" element={<Completed />} />
           <Route path="/About" element={<About />} />
+          <Route path="/Leaderboard" element={<Leaderboard />} />
           <Route path="/Login" element={user.logged ? <Navigate to="/" /> : <LoginPage />} />
           <Route path="/Signup" element={user.logged ? <Navigate to="/" /> : <SignUpPage />} />
           <Route path="/Reset" element={<Reset />} />

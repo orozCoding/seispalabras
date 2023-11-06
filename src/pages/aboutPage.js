@@ -23,13 +23,6 @@ const About = () => {
         </NavLink>{" "}
         in order to practice and keep track of your progress.
       </p>
-      <p>
-        Made By{" "}
-        <a href="https://github.com/orozCoding" className="myLink">
-          orozCoding
-        </a>
-        .
-      </p>
       <p className="versionText">
         All the words were double checked with{" "}
         <a href="https://www.deepl.com/es/translator" className="myLink" target="_blank" rel="noreferrer">
@@ -48,7 +41,14 @@ const About = () => {
         </a>
         .
       </p>
-      <p className="finalMsg small">
+      <p className="versionText">
+        Made By{" "}
+        <a href="https://github.com/orozCoding" className="myLink">
+          orozCoding
+        </a>
+        .
+      </p>
+      <p className="versionText small">
         Version: <span className="possibleWord">beta 1.0</span>.
       </p>
     </div>
